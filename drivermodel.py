@@ -15,7 +15,7 @@
 ###
 
 import numpy as np
-
+import math
 
 ###
 ###
@@ -171,15 +171,17 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
     timePerWord = 60000/wordsPerMinuteMean
     if(interleaving == "word"):
        typingSpeed = np.random.normal(loc=wordsPerMinuteMean, scale=wordsPerMinuteSD,size=100)
-       for i in range(4):
-           for k in range(2):
+       for i in range(nrSentences-1):
+           for k in range(nrWordsPerSentence-1):
                 if k == 0:
                     typingTime =retrievalTimeWord + timePerWord + retrievalTimeSentence
-                    locDrift.append(typingTime/50 * vehicleUpdateNotSteering())
+                    locDrift.append(math.floor(typingTime/50) * vehicleUpdateNotSteering())
+                    trialTime = trialTime + typingTime + steeringUpdateTime
                 else:
                     typingTime = timePerWord
-                    locDrift.append(typingTime/50 * vehicleUpdateNotSteering())
-               
+                    locDrift.append(math.floor(typingTime/50) * vehicleUpdateNotSteering())
+                    trialTime = trialTime + typingTime + steeringUpdateTime
+                    
 
 ### function to run multiple simulations. Needs to be defined by students (section 3 of assignment)
 def runSimulations(nrSims = 100):
