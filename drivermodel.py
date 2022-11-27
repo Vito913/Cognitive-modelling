@@ -14,7 +14,7 @@
 ### import packages
 ###
 
-import numpy
+import numpy as np
 
 
 ###
@@ -152,7 +152,7 @@ def vehicleUpdateNotSteering():
 
     
 
-    vals = numpy.random.normal(loc=gaussDeviateMean, scale=gaussDeviateSD,size=1)[0]
+    vals = np.random.normal(loc=gaussDeviateMean, scale=gaussDeviateSD,size=1)[0]
     returnValue = velocityCheckForVectors(vals)
     return returnValue
 
@@ -163,22 +163,25 @@ def vehicleUpdateNotSteering():
 ### Function to run a trial. Needs to be defined by students (section 2 and 3 of assignment)
 
 def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering=2, interleaving="word"): 
-    print("hello world")
-	
-	
-	
-
-
-
+    resetParameters()
+    
+    locDrift = np.array()
+    trialTime = 0
+    vehiclePosition = startingPositionInLane
+    timePerWord = 60000/wordsPerMinuteMean
+    if(interleaving == "word"):
+       typingSpeed = np.random.normal(loc=wordsPerMinuteMean, scale=wordsPerMinuteSD,size=100)
+       for i in range(4):
+           for k in range(2):
+                if k == 0:
+                    typingTime =retrievalTimeWord + timePerWord + retrievalTimeSentence
+                    locDrift.append(typingTime/50 * vehicleUpdateNotSteering())
+                else:
+                    typingTime = timePerWord
+                    locDrift.append(typingTime/50 * vehicleUpdateNotSteering())
+               
 
 ### function to run multiple simulations. Needs to be defined by students (section 3 of assignment)
 def runSimulations(nrSims = 100):
     print("hello world")
-
-
-
-	
-
-
-
 
