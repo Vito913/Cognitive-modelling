@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 def start():
     return 0
 
+# Time for perceptual step
 def perceptual_step(type = "normal"):
     if type == "fast":
         return 50
@@ -12,6 +13,7 @@ def perceptual_step(type = "normal"):
     elif type == "normal":
         return 100
 
+#time for cognitive step
 def cognitive_step(type = "normal"):
     if type == "fast":
         return 25
@@ -20,6 +22,8 @@ def cognitive_step(type = "normal"):
     elif type == "normal":
         return 70
 
+
+# time for motor step
 def motor_step(type = "normal"):
     if type == "fast":
         return 30
@@ -28,10 +32,13 @@ def motor_step(type = "normal"):
     elif type == "normal":
         return 70
 
+# first example that returns the time for the whole process
 def example1():
     total_time = perceptual_step() + cognitive_step() + motor_step()
     print("This took " + str(total_time) + " ms")
 
+
+# second task that returns the time for the whole process based on the type of input
 def example2(completeness):
     options = ["fast", "slow", "normal"]
     values = []
@@ -56,4 +63,9 @@ def example2(completeness):
         bp = ax.boxplot(data)
         plt.show()
         
-example2("extremes")
+
+
+# placeholder for the third task
+
+def example3():
+    break #this is a placeholder for the third task
