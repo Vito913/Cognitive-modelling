@@ -150,9 +150,7 @@ def vehicleUpdateActiveSteering(LD):
 def vehicleUpdateNotSteering():
     
     global gaussDeviateMean
-    global gaussDeviateSD 
-
-    
+    global gaussDeviateSD   
 
     vals = np.random.normal(loc=gaussDeviateMean, scale=gaussDeviateSD,size=1)[0]
     returnValue = velocityCheckForVectors(vals)
@@ -177,23 +175,25 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
             for k in range(nrWordsPerSentence):
                 if k == 0:
                     typingTime = retrievalTimeWord + timePerWord + retrievalTimeSentence
-                    print(typingTime)
-                    for j in range(math.floor(typingTime/steeringUpdateTime)):
-                        vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * steeringUpdateTime/1000
-                        locDrift.append(vehiclePosition)
-                        trialTime = trialTime + steeringUpdateTime
-                    
                 else:
-                    for l in range(math.floor(retrievalTimeWord/steeringUpdateTime)):
-                        vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * steeringUpdateTime/1000
-                        locDrift.append(vehiclePosition)
-                        trialTime = trialTime + steeringUpdateTime
                     typingTime = timePerWord + retrievalTimeWord
-                    print(typingTime)
-                    
-                    trialTime = trialTime + typingTime + steeringUpdateTime
-        print(locDrift)
+                print(typingTime)
 
+                for j in range(math.floor(typingTime/timeStepPerDriftUpdate)):
+                    vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * (timeStepPerDriftUpdate / 1000)
+                    locDrift.append(vehiclePosition)
+                    # trialTime = trialTime + timeStepPerDriftUpdate
+                if k != nrWordsPerSentence:
+                    for l in range(math.floor(nrSteeringMovementsWhenSteering)):
+                        vehiclePosition = vehiclePosition + vehicleUpdateActiveSteering(vehiclePosition) * (steeringUpdateTime / 1000) # Only thing I'm unsure about: it doesnt care whether LD is - or +. It should. :')
+                        for j in range(math.floor(steeringUpdateTime/timeStepPerDriftUpdate)):
+                            locDrift.append(vehiclePosition)
+                        trialTime += steeringUpdateTime
+                    
+                trialTime += typingTime
+        print(locDrift)
+    else:
+        print("strategy is not 'word'!")
 ### function to run multiple simulations. Needs to be defined by students (section 3 of assignment)
 def runSimulations(nrSims = 100):
     print("hello world")
