@@ -136,14 +136,17 @@ def example5(completeness):
                     error_prediction = basic_error * options[i][1] * options[j][1] * options[k][1]
                     predictions.append(prediction)
                     error_predictions.append(error_prediction)
-                    values.append(("Time prediction is: " + prediction, "Error prediction is: " + error_prediction))
+                    values.append(("Time prediction is: " + str(prediction), "Error prediction is: " + str(error_prediction)))
         print(values)
 
         N = 50
         x = predictions
         y = error_predictions
         colors = np.random.rand(N)
-        area = (30 * np.random.rand(N))**2  # 0 to 15 point radii
-
-        plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+        area = (30 * np.random.rand(N))**2 # 0 to 15 point radii
+        
+        plt.scatter(x, y, s=area[0:27], c=colors[0:27], alpha=0.5)
         plt.show()
+        
+        
+example4("all")
