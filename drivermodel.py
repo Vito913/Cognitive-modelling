@@ -134,7 +134,9 @@ def velocityCheckForVectors(velocityVectors):
 
 
 
-## Function to determine lateral velocity (controlled with steering wheel) based on where car is currently positioned. See Janssen & Brumby (2010) for more detailed explanation. Lateral velocity update depends on current position in lane. Intuition behind function: the further away you are, the stronger the correction will be that a human makes
+## Function to determine lateral velocity (controlled with steering wheel) based on where car is currently positioned. 
+# See Janssen & Brumby (2010) for more detailed explanation. Lateral velocity update depends on current position in lane. Intuition behind function: the further away you are, 
+# the stronger the correction will be that a human makes
 def vehicleUpdateActiveSteering(LD):
 
 	latVel = 0.2617 * LD*LD + 0.0233 * LD - 0.022
@@ -165,25 +167,35 @@ def vehicleUpdateNotSteering():
 def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering=2, interleaving="word"): 
     resetParameters()
     
-    locDrift = np.array()
+    locDrift = []
     trialTime = 0
     vehiclePosition = startingPositionInLane
     timePerWord = 60000/wordsPerMinuteMean
     if(interleaving == "word"):
-       typingSpeed = np.random.normal(loc=wordsPerMinuteMean, scale=wordsPerMinuteSD,size=100)
-       for i in range(nrSentences-1):
-           for k in range(nrWordsPerSentence-1):
+        typingSpeed = np.random.normal(loc=wordsPerMinuteMean, scale=wordsPerMinuteSD,size=100)
+        for i in range(nrSentences):
+            for k in range(nrWordsPerSentence):
                 if k == 0:
-                    typingTime =retrievalTimeWord + timePerWord + retrievalTimeSentence
-                    locDrift.append(math.floor(typingTime/50) * vehicleUpdateNotSteering())
-                    trialTime = trialTime + typingTime + steeringUpdateTime
-                else:
-                    typingTime = timePerWord
-                    locDrift.append(math.floor(typingTime/50) * vehicleUpdateNotSteering())
-                    trialTime = trialTime + typingTime + steeringUpdateTime
+                    typingTime = retrievalTimeWord + timePerWord + retrievalTimeSentence
+                    print(typingTime)
+                    for j in range(math.floor(typingTime/steeringUpdateTime)):
+                        vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * steeringUpdateTime/1000
+                        locDrift.append(vehiclePosition)
+                        trialTime = trialTime + steeringUpdateTime
                     
+                else:
+                    for l in range(math.floor(retrievalTimeWord/steeringUpdateTime)):
+                        vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * steeringUpdateTime/1000
+                        locDrift.append(vehiclePosition)
+                        trialTime = trialTime + steeringUpdateTime
+                    typingTime = timePerWord + retrievalTimeWord
+                    print(typingTime)
+                    
+                    trialTime = trialTime + typingTime + steeringUpdateTime
+        print(locDrift)
 
 ### function to run multiple simulations. Needs to be defined by students (section 3 of assignment)
 def runSimulations(nrSims = 100):
     print("hello world")
 
+runTrial()
