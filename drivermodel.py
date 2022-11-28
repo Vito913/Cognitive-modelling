@@ -175,10 +175,21 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
             for k in range(nrWordsPerSentence):
                 if k == 0:
                     typingTime = retrievalTimeWord + timePerWord + retrievalTimeSentence
+                    for j in range(math.floor(typingTime/steeringUpdateTime)):
+                        vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * steeringUpdateTime/1000
+                        locDrift.append(vehiclePosition)
+                        trialTime = trialTime + steeringUpdateTime
+                if i != nrSentences-1 or k != nrWordsPerSentence-1:
+                    for n in nrSteeringMovementsWhenSteering:
+                        typingTime = retrievalTimeWord + timePerWord
+                        for j in range(math.floor(typingTime/steeringUpdateTime)):
+                            vehiclePosition = vehiclePosition + vehicleUpdateActiveSteering(vehiclePosition) * steeringUpdateTime/1000
+                            locDrift.append(vehiclePosition)
+                            trialTime = trialTime + steeringUpdateTime
                 else:
+              
                     typingTime = timePerWord + retrievalTimeWord
-                print(typingTime)
-
+                
                 for j in range(math.floor(typingTime/timeStepPerDriftUpdate)):
                     vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * (timeStepPerDriftUpdate / 1000)
                     locDrift.append(vehiclePosition)
