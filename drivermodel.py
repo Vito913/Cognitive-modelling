@@ -167,41 +167,44 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
     
     locDrift = []
     trialTime = 0
-    vehiclePosition = startingPositionInLane
+    locDrift.append(startingPositionInLane)
     timePerWord = 60000/wordsPerMinuteMean
     if(interleaving == "word"):
         typingSpeed = np.random.normal(loc=wordsPerMinuteMean, scale=wordsPerMinuteSD,size=100)
         for i in range(nrSentences):
             for k in range(nrWordsPerSentence):
+                
+                #update steering if its the first word of a first sentance
                 if k == 0:
                     typingTime = retrievalTimeWord + timePerWord + retrievalTimeSentence
                     for j in range(math.floor(typingTime/steeringUpdateTime)):
-                        vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * steeringUpdateTime/1000
+                        vehiclePosition =  locDrift[-1] + vehicleUpdateNotSteering() * steeringUpdateTime * 0.001
                         locDrift.append(vehiclePosition)
-                        trialTime = trialTime + steeringUpdateTime
+                        trialTime = trialTime + steeringUpdateTime ## Typing time probably
+                        
+                # Update steering when the user is actively steering
                 if i != nrSentences-1 or k != nrWordsPerSentence-1:
-                    for n in nrSteeringMovementsWhenSteering:
+                    for n in range(nrSteeringMovementsWhenSteering):
                         typingTime = retrievalTimeWord + timePerWord
+
                         for j in range(math.floor(typingTime/steeringUpdateTime)):
-                            vehiclePosition = vehiclePosition + vehicleUpdateActiveSteering(vehiclePosition) * steeringUpdateTime/1000
+                            drift = vehicleUpdateActiveSteering(locDrift[-1])
+                            if(drift >= 0):
+                                vehiclePosition = locDrift[-1] - drift * steeringUpdateTime * 0.001
+                            else:
+                                vehiclePosition = locDrift[-1] + drift * steeringUpdateTime * 0.001
                             locDrift.append(vehiclePosition)
-                            trialTime = trialTime + steeringUpdateTime
-                else:
-              
-                    typingTime = timePerWord + retrievalTimeWord
+                            trialTime = trialTime + steeringUpdateTime ##
                 
-                for j in range(math.floor(typingTime/timeStepPerDriftUpdate)):
-                    vehiclePosition = vehiclePosition + vehicleUpdateNotSteering() * (timeStepPerDriftUpdate / 1000)
-                    locDrift.append(vehiclePosition)
-                    # trialTime = trialTime + timeStepPerDriftUpdate
-                if k != nrWordsPerSentence:
-                    for l in range(math.floor(nrSteeringMovementsWhenSteering)):
-                        vehiclePosition = vehiclePosition + vehicleUpdateActiveSteering(vehiclePosition) * (steeringUpdateTime / 1000) # Only thing I'm unsure about: it doesnt care whether LD is - or +. It should. :')
-                        for j in range(math.floor(steeringUpdateTime/timeStepPerDriftUpdate)):
-                            locDrift.append(vehiclePosition)
-                        trialTime += steeringUpdateTime
-                    
-                trialTime += typingTime
+                # Update sterering when the user is not actively steering
+                else:
+                    typingTime = timePerWord + retrievalTimeWord
+                    for j in range(math.floor(typingTime/timeStepPerDriftUpdate)):
+                        vehiclePosition = locDrift[-1] + vehicleUpdateNotSteering() * (timeStepPerDriftUpdate * 0.001)
+                        locDrift.append(vehiclePosition)
+                        trialTime = trialTime + steeringUpdateTime ## Typing time probably
+            
+            trialTime += typingTime
         print(locDrift)
     else:
         print("strategy is not 'word'!")
