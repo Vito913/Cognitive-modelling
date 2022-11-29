@@ -17,6 +17,7 @@
 import numpy as np
 import math
 
+from matplotlib import pyplot as plt
 ###
 ###
 ### Global parameters. These can be called within functions to change (Python: make sure to call GLOBAL)
@@ -180,36 +181,43 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                     for j in range(math.floor(typingTime/steeringUpdateTime)):
                         vehiclePosition =  locDrift[-1] + vehicleUpdateNotSteering() * steeringUpdateTime * 0.001
                         locDrift.append(vehiclePosition)
-                        trialTime = trialTime + steeringUpdateTime ## Typing time probably
-                        
+                                                
                 # Update steering when the user is actively steering
                 if i != nrSentences-1 or k != nrWordsPerSentence-1:
+                    activeUpdateTime = nrSteeringMovementsWhenSteering * 2 
                     for n in range(nrSteeringMovementsWhenSteering):
                         typingTime = retrievalTimeWord + timePerWord
 
                         for j in range(math.floor(typingTime/steeringUpdateTime)):
                             drift = vehicleUpdateActiveSteering(locDrift[-1])
                             if(drift >= 0):
-                                vehiclePosition = locDrift[-1] - drift * steeringUpdateTime * 0.001
-                            else:
                                 vehiclePosition = locDrift[-1] + drift * steeringUpdateTime * 0.001
+                            else:
+                                vehiclePosition = locDrift[-1] - drift * steeringUpdateTime * 0.001
                             locDrift.append(vehiclePosition)
-                            trialTime = trialTime + steeringUpdateTime ##
-                
+                        
                 # Update sterering when the user is not actively steering
                 else:
                     typingTime = timePerWord + retrievalTimeWord
                     for j in range(math.floor(typingTime/timeStepPerDriftUpdate)):
                         vehiclePosition = locDrift[-1] + vehicleUpdateNotSteering() * (timeStepPerDriftUpdate * 0.001)
-                        locDrift.append(vehiclePosition)
-                        trialTime = trialTime + steeringUpdateTime ## Typing time probably
-            
-            trialTime += typingTime
-        print(locDrift)
+                        locDrift.append(vehiclePosition)                    
+        
+        max_value = np.max(locDrift)
+        mean_drift = np.mean(locDrift)
+        y_time = np.arange(0, len(locDrift)* 50, 50)
+        print(len(y_time), len(locDrift))
+        print(locDrift) # check what drift is, because it seems to only grow.
+        plot =plt.scatter(y_time,locDrift)
+        plt.show()
+        
     else:
         print("strategy is not 'word'!")
+        
+    
 ### function to run multiple simulations. Needs to be defined by students (section 3 of assignment)
 def runSimulations(nrSims = 100):
     print("hello world")
 
 runTrial()
+
