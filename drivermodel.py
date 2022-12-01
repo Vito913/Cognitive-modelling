@@ -169,31 +169,30 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
     locDrift = []
     trialTime = 0
     locDrift.append(startingPositionInLane)
-    timePerWord = 60000/wordsPerMinuteMean
     if(interleaving == "word"):
         typingSpeed = np.random.normal(loc=wordsPerMinuteMean, scale=wordsPerMinuteSD,size=100)
+        timePerWord = 60000/np.random.choice(typingSpeed)
+        ## iterate over all words in the sentencesw
         for i in range(nrSentences):
             for k in range(nrWordsPerSentence):
-                
                 #update steering if its the first word of a first sentance
-                if k == 0:
-                    typingTime = retrievalTimeWord + timePerWord + retrievalTimeSentence
-                    for j in range(math.floor(typingTime/steeringUpdateTime)):
+                if k == 0: ## Checks if its the first word of a sentance
+                    typingTime = retrievalTimeWord + timePerWord + retrievalTimeSentence ## Adds the retrieval of a sentance and the word to the typing time
+                    for j in range(math.floor(typingTime/steeringUpdateTime)): ## Loops through the number of steering updates and adds the drift to the drift list
                         vehiclePosition =  locDrift[-1] + vehicleUpdateNotSteering() * steeringUpdateTime * 0.001
                         locDrift.append(vehiclePosition)
-                                                
+                        trialTime = trialTime + 50
                 # Update steering when the user is actively steering
                 if i != nrSentences-1 or k != nrWordsPerSentence-1:
-                    activeUpdateTime = nrSteeringMovementsWhenSteering * 2 
-                    for n in range(nrSteeringMovementsWhenSteering):
+                    activeUpdateTime = nrSteeringMovementsWhenSteering * 250 
+                    for n in range(activeUpdateTime):
                         typingTime = retrievalTimeWord + timePerWord
-
                         for j in range(math.floor(typingTime/steeringUpdateTime)):
                             drift = vehicleUpdateActiveSteering(locDrift[-1])
-                            if(drift >= 0):
-                                vehiclePosition = locDrift[-1] + drift * steeringUpdateTime * 0.001
-                            else:
+                            if(locDrift[-1] >= 0):
                                 vehiclePosition = locDrift[-1] - drift * steeringUpdateTime * 0.001
+                            else:
+                                vehiclePosition = locDrift[-1] + drift * steeringUpdateTime * 0.001
                             locDrift.append(vehiclePosition)
                         
                 # Update sterering when the user is not actively steering
@@ -201,7 +200,8 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                     typingTime = timePerWord + retrievalTimeWord
                     for j in range(math.floor(typingTime/timeStepPerDriftUpdate)):
                         vehiclePosition = locDrift[-1] + vehicleUpdateNotSteering() * (timeStepPerDriftUpdate * 0.001)
-                        locDrift.append(vehiclePosition)                    
+                        locDrift.append(vehiclePosition)   
+                        trialTime = trialTime + timeStepPerDriftUpdate                 
         
         max_value = np.max(locDrift)
         mean_drift = np.mean(locDrift)
