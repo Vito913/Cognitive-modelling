@@ -215,7 +215,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         mean_drift = np.mean(locDrift)
         y_time = np.arange(0, len(locDrift)* 50, 50)
         print(len(y_time), len(locDrift))
-        plot_word = plt.scatter(y_time,locDrift)
+        plot_word = plt.scatter(locDrift, y_time)
         plt.show()
 
     elif(interleaving == "sentence"):
@@ -258,7 +258,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         mean_drift = np.mean(locDrift)
         y_time = np.arange(0, len(locDrift)* 50, 50)
         print(len(y_time), len(locDrift))
-        plot_sentence = plt.scatter(y_time,locDrift)
+        plot_sentence = plt.scatter(locDrift, y_time)
         plt.show()
     
     elif(interleaving == "drivingOnly"):
@@ -293,7 +293,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         mean_drift = np.mean(locDrift)
         y_time = np.arange(0, len(locDrift)* 50, 50)
         print(len(y_time), len(locDrift))
-        plot_drivingOnly = plt.scatter(y_time,locDrift)
+        plot_drivingOnly = plt.scatter(locDrift, y_time)
         plt.show()
     
     elif(interleaving == "none"):
@@ -320,7 +320,8 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         mean_drift = np.mean(locDrift)
         y_time = np.arange(0, len(locDrift)* 50, 50)
         print(len(y_time), len(locDrift))
-        plot_none = plt.scatter(y_time,locDrift)
+        plot_none = plt.scatter(locDrift, y_time)
+
         plt.show()
     else:
         print("strategy is not recognized!")
