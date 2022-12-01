@@ -324,10 +324,28 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         plt.show()
     else:
         print("strategy is not recognized!")
+    
+    return trialTime, mean_drift, max_value
         
     
 ### function to run multiple simulations. Needs to be defined by students (section 3 of assignment)
 def runSimulations(nrSims = 100):
-    print("hello world")
+    # This function	should start by creating four vectors to store the output of each individual simulation:
+    totalTime = []
+    meanDeviation = []
+    maxDeviation = []
+    Condition = []
+    interleaving = ['word', 'sentence', 'drivingOnly', 'none']
 
-runTrial()
+    # Then,	iterate	through	all	four interleaving conditions. 
+    for i in range(interleaving):
+        # Then, iterate through the number of simulations (if your computer can take it: try 100; if that takes too much time do something like	50;	else 25).
+        for j in range (nrSims):
+            nrWordsPerSentence = np.random.randint(15, 21)
+            tot_time, mean_dev, max_dev = runTrial(nrWordsPerSentence, 10, 4, i)
+            totalTime.append(tot_time)
+            meanDeviation.append(mean_dev)
+            maxDeviation.append(max_dev)
+            Condition.append(i)
+
+runSimulations()
