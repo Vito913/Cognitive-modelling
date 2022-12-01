@@ -194,7 +194,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                             else:
                                 vehiclePosition = locDrift[-1] + drift * steeringUpdateTime * 0.001
                             locDrift.append(vehiclePosition)
-                        
+            
                 # Update sterering when the user is not actively steering
                 else:
                     typingTime = timePerWord + retrievalTimeWord

@@ -179,7 +179,12 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
             for j in range(nrWordsPerSentence):
                 # Check if it's the first word of a sentence. If it is, you add the retrieval time for the new sentence to the typingtime. 
                 if j == 0: 
-                    typingTime += retrievalTimeSentence ## Adds the retrieval of a sentance and the word to the typing time
+                    
+                ############ Variable unbound and does nothing##################    
+                    typingTime += retrievalTimeSentence               
+                ##############################
+                
+                
                 
                 # Calculate the rest of the typing time for this word j
                 typingTime = retrievalTimeWord + timePerWord
@@ -195,7 +200,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                 trialTime += typingTime    
 
                 # After the word is typed, you update the vehicle location using Active Steering.
-                if i != nrSentences-1 and k != nrWordsPerSentence-1:
+                if i != nrSentences-1 and j != nrWordsPerSentence-1:
 
                     # We do 'nrSteeringMovementsWhenSteering' amount of updates to change the vehicle position. Every time, we add steeringUpdateTime to our trialTime.
                     for l in range(nrSteeringMovementsWhenSteering):
@@ -207,7 +212,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                             vehiclePosition = locDrift[-1] + vehicleUpdate * steeringUpdateTime * 0.001
 
                         # However, the drift is updated every 'timeStepPerDriftUpdate' ms, so we update the drift more than once.
-                        for m in range(steeringUpdateTime/timeStepPerDriftUpdate):
+                        for m in range(math.floor(steeringUpdateTime/timeStepPerDriftUpdate)):
                             locDrift.append(vehiclePosition)
                               
         # Making our plots. 
@@ -238,20 +243,20 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                 trialTime += typingTime    
 
             # After the word is typed, you update the vehicle location using Active Steering.
-            if i != nrSentences-1 and k != nrWordsPerSentence-1:
+                if i != nrSentences-1 and j != nrWordsPerSentence-1:
 
-                # We do 'nrSteeringMovementsWhenSteering' amount of updates to change the vehicle position. Every time, we add steeringUpdateTime to our trialTime.
-                for l in range(nrSteeringMovementsWhenSteering):
-                    vehicleUpdate = vehicleUpdateActiveSteering(locDrift[-1])
-                    trialTime += steeringUpdateTime
-                    if(locDrift[-1] >= 0):
-                        vehiclePosition = locDrift[-1] - vehicleUpdate * steeringUpdateTime * 0.001
-                    else:
-                        vehiclePosition = locDrift[-1] + vehicleUpdate * steeringUpdateTime * 0.001
+                    # We do 'nrSteeringMovementsWhenSteering' amount of updates to change the vehicle position. Every time, we add steeringUpdateTime to our trialTime.
+                    for l in range(nrSteeringMovementsWhenSteering):
+                        vehicleUpdate = vehicleUpdateActiveSteering(locDrift[-1])
+                        trialTime += steeringUpdateTime
+                        if(locDrift[-1] >= 0):
+                            vehiclePosition = locDrift[-1] - vehicleUpdate * steeringUpdateTime * 0.001
+                        else:
+                            vehiclePosition = locDrift[-1] + vehicleUpdate * steeringUpdateTime * 0.001
 
-                    # However, the drift is updated every 'timeStepPerDriftUpdate' ms, so we update the drift more than once.
-                    for m in range(steeringUpdateTime/timeStepPerDriftUpdate):
-                        locDrift.append(vehiclePosition)
+                        # However, the drift is updated every 'timeStepPerDriftUpdate' ms, so we update the drift more than once.
+                        for m in range(math.floor(steeringUpdateTime/timeStepPerDriftUpdate)):
+                            locDrift.append(vehiclePosition)
 
         # Making our plots. 
         max_value = np.max(locDrift)
@@ -273,20 +278,20 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                 trialTime += typingTime    
 
             # After the word is "typed" (it is not but ok), you update the vehicle location using Active Steering.
-            if i != nrSentences-1 and k != nrWordsPerSentence-1:
+                if i != nrSentences-1 and j != nrWordsPerSentence-1:
                
                 # We do 'nrSteeringMovementsWhenSteering' amount of updates to change the vehicle position. Every time, we add steeringUpdateTime to our trialTime.
-                for l in range(nrSteeringMovementsWhenSteering):
-                    vehicleUpdate = vehicleUpdateActiveSteering(locDrift[-1])
-                    trialTime += steeringUpdateTime
-                    if(locDrift[-1] >= 0):
-                        vehiclePosition = locDrift[-1] - vehicleUpdate * steeringUpdateTime * 0.001
-                    else:
-                        vehiclePosition = locDrift[-1] + vehicleUpdate * steeringUpdateTime * 0.001
+                    for l in range(nrSteeringMovementsWhenSteering):
+                        vehicleUpdate = vehicleUpdateActiveSteering(locDrift[-1])
+                        trialTime += steeringUpdateTime
+                        if(locDrift[-1] >= 0):
+                            vehiclePosition = locDrift[-1] - vehicleUpdate * steeringUpdateTime * 0.001
+                        else:
+                            vehiclePosition = locDrift[-1] + vehicleUpdate * steeringUpdateTime * 0.001
 
-                    # However, the drift is updated every 'timeStepPerDriftUpdate' ms, so we update the drift more than once.
-                    for m in range(steeringUpdateTime/timeStepPerDriftUpdate):
-                        locDrift.append(vehiclePosition)
+                        # However, the drift is updated every 'timeStepPerDriftUpdate' ms, so we update the drift more than once.
+                        for m in range(math.floor(steeringUpdateTime/timeStepPerDriftUpdate)):
+                            locDrift.append(vehiclePosition)
 
         # Making our plots. 
         max_value = np.max(locDrift)
@@ -316,8 +321,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                 trialTime += typingTime    
 
         # Making our plots. 
-        max_value = np.max(locDrift)
-        mean_drift = np.mean(locDrift)
+
         y_time = np.arange(0, len(locDrift)* 50, 50)
         print(len(y_time), len(locDrift))
         plot_none = plt.scatter(locDrift, y_time)
@@ -325,6 +329,9 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         plt.show()
     else:
         print("strategy is not recognized!")
+    
+    max_value = np.max(locDrift)
+    mean_drift = np.mean(locDrift)
     
     return trialTime, mean_drift, max_value
         
@@ -339,11 +346,11 @@ def runSimulations(nrSims = 100):
     interleaving = ['word', 'sentence', 'drivingOnly', 'none']
 
     # Then,	iterate	through	all	four interleaving conditions. 
-    for i in range(interleaving):
+    for i in range(len(interleaving)):
         # Then, iterate through the number of simulations (if your computer can take it: try 100; if that takes too much time do something like	50;	else 25).
         for j in range (nrSims):
             nrWordsPerSentence = np.random.randint(15, 21)
-            tot_time, mean_dev, max_dev = runTrial(nrWordsPerSentence, 10, 4, i)
+            tot_time, mean_dev, max_dev = runTrial(nrWordsPerSentence, 10, 4, interleaving[i])
             totalTime.append(tot_time)
             meanDeviation.append(mean_dev)
             maxDeviation.append(max_dev)
