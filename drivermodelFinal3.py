@@ -215,6 +215,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         y_time = np.arange(0, len(locDrift)* 50, 50)
         mean_time = np.mean(y_time)
         plot_word = plt.scatter(y_time, locDrift, 3)
+        plt.text(0.02,0.5, "mean time: " + str(mean_time)+"\n" + "mean drift: " + str(mean_drift)+"\n" + "max drift: " + str(max_value))
         plt.title("word derivation")
         plt.ylabel("Drift")
         plt.xlabel("Time in ms")
@@ -260,9 +261,11 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         mean_drift = np.mean(locDrift)
         y_time = np.arange(0, len(locDrift)* 50, 50)
         mean_time = np.mean(y_time)
+
         plt.title("Sentence derivation")
         plt.ylabel("Drift")
         plt.xlabel("Time in ms")
+        plt.text(0.02,0.5, "mean time: " + str(mean_time)+"\n" + "mean drift: " + str(mean_drift)+"\n" + "max drift: " + str(max_value))
         # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
         plot_sentence = plt.scatter(y_time, locDrift, 3)
 
@@ -305,7 +308,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         plt.title("driving only derivation")
         plt.ylabel("Drift")
         plt.xlabel("Time in ms")
-        
+        plt.text(0.02,0.5, "mean time: " + str(mean_time)+"\n" + "mean drift: " + str(mean_drift)+"\n" + "max drift: " + str(max_value))
         plt.show()
     
     elif(interleaving == "none"):
@@ -331,15 +334,15 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                 trialTime += typingTime    
 
         # Making our plots. 
-        # max_value = np.max(locDrift)
-        # mean_drift = np.mean(locDrift)
-        # y_time = np.arange(0, len(locDrift)* 50, 50)
-        # mean_time = np.mean(y_time)
-        # # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
-        # plot_none = plt.scatter(y_time, locDrift, 3)
-
+        max_value = np.max(locDrift)
+        mean_drift = np.mean(locDrift)
+        y_time = np.arange(0, len(locDrift)* 50, 50)
+        mean_time = np.mean(y_time)
+        # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
+        plot_none = plt.scatter(y_time, locDrift, 3)
+        plt.text(0.02,0.5, "mean time: " + str(mean_time)+"\n" + "mean drift: " + str(mean_drift)+"\n" + "max drift: " + str(max_value))
         # add text to the plot
-        # plt.show()
+        plt.show()
 
     elif(interleaving == "bonus"):
         # Generate a random number as a start value for our 'checkVariable'. Once this threshold is reached, it'll drive, else it'll keep typing.
@@ -394,7 +397,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         y_time = np.arange(0, len(locDrift)* 50, 50)
         mean_time = np.mean(y_time)
         plot_bonus = plt.scatter(y_time, locDrift, 3)
-
+        plt.text(0.02,0.5, "mean time: " + str(mean_time)+"\n" + "mean drift: " + str(mean_drift)+"\n" + "max drift: " + str(max_value))
         # Add text to plot
         plt.show()
 
