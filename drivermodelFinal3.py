@@ -167,7 +167,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
     locDrift.append(startingPositionInLane)
     typingSpeed = np.random.normal(loc=wordsPerMinuteMean, scale=wordsPerMinuteSD,size=100)
     timePerWord = 60000/np.random.choice(typingSpeed)
-
+    typingTime = 0
     # First we check for the strategy, if it's word you enter the first if-statement
     if(interleaving == "word"):
         # Iterate over all words in all sentences
@@ -220,7 +220,6 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         for i in range(nrSentences):
             for j in range(nrWordsPerSentence):
                 # Calculate the typing time for this word j
-                typingTime = 0
                 if j == 0:     
                     typingTime += retrievalTimeSentence   
                 typingTime += timePerWord
@@ -259,7 +258,6 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
         plot_sentence = plt.scatter(y_time, locDrift, 3)
 
-        plt.text(0, 0, "Max drift: " + max_value + " m")
         plt.show()
     
     elif(interleaving == "drivingOnly"):
@@ -331,7 +329,6 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         plot_none = plt.scatter(y_time, locDrift, 3)
 
         # add text to the plot
-        plt.text(0, 0, "Max drift: " + max_value + " m")
         plt.show()
 
     elif(interleaving == "bonus"):
@@ -389,7 +386,6 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         plot_bonus = plt.scatter(y_time, locDrift, 3)
 
         # Add text to plot
-        plt.text(0, 0, "Max drift: " + max_value + " m")
         plt.show()
 
 
