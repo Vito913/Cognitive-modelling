@@ -431,13 +431,14 @@ def runSimulations(nrSims = 100):
             maxDeviation.append(max_dev)
             Condition.append(i)
     
-    # Return a scatterplot where the total time is on one axis and the mean deviation is on the other axis.
-    # and for each of the interleaving conditions a different color and shape
-    # plt.scatter(totalTime, meanDeviation, 3)
+
     data = pd.DataFrame({'Total Time': totalTime, 'Mean Deviation': meanDeviation, 'Max Deviation': maxDeviation, 'Condition': Condition})
     plt.figure(figsize=(10, 7))
-    sns.scatterplot(x="Total Time", y="Mean Deviation", data=data, hue="Condition")
-
+    sns.scatterplot(x="Total Time", y="Max derivation", data=data, hue="Condition")
+    plt.title("Total Time vs Max Deviation")
+    plt.xlabel("Total Time")
+    plt.ylabel("Max Deviation")
+    
     plt.show()
     
     
