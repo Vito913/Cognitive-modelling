@@ -210,12 +210,15 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                             locDrift.append(vehiclePosition)
                               
         # Making our plots. 
-        # max_value = np.max(locDrift)
-        # mean_drift = np.mean(locDrift)
-        # y_time = np.arange(0, len(locDrift)* 50, 50)
-        # mean_time = np.mean(y_time)
-        # plot_word = plt.scatter(y_time, locDrift, 3)
-        # plt.show()
+        max_value = np.max(locDrift)
+        mean_drift = np.mean(locDrift)
+        y_time = np.arange(0, len(locDrift)* 50, 50)
+        mean_time = np.mean(y_time)
+        plot_word = plt.scatter(y_time, locDrift, 3)
+        plt.title("word derivation")
+        plt.ylabel("Drift")
+        plt.xlabel("Time in ms")
+        plt.show()
 
     elif(interleaving == "sentence"):
         # Iterate over all words in all sentences
@@ -253,14 +256,17 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                             locDrift.append(vehiclePosition)
 
         # Making our plots. 
-        # max_value = np.max(locDrift)
-        # mean_drift = np.mean(locDrift)
-        # y_time = np.arange(0, len(locDrift)* 50, 50)
-        # mean_time = np.mean(y_time)
-        # # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
-        # plot_sentence = plt.scatter(y_time, locDrift, 3)
+        max_value = np.max(locDrift)
+        mean_drift = np.mean(locDrift)
+        y_time = np.arange(0, len(locDrift)* 50, 50)
+        mean_time = np.mean(y_time)
+        plt.title("Sentence derivation")
+        plt.ylabel("Drift")
+        plt.xlabel("Time in ms")
+        # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
+        plot_sentence = plt.scatter(y_time, locDrift, 3)
 
-        # plt.show()
+        plt.show()
     
     elif(interleaving == "drivingOnly"):
         # Iterate over all words in all sentences
@@ -290,15 +296,17 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                             locDrift.append(vehiclePosition)
 
         # Making our plots. 
-        # max_value = np.max(locDrift)
-        # mean_drift = np.mean(locDrift)
-        # y_time = np.arange(0, len(locDrift)* 50, 50)
-        # mean_time = np.mean(y_time)
-        # # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
-        # plot_drivingOnly = plt.scatter(y_time, locDrift, 3)
-
-        # plt.text(0, 0, "Max drift: " + max_value + " m")
-        # plt.show()
+        max_value = np.max(locDrift)
+        mean_drift = np.mean(locDrift)
+        y_time = np.arange(0, len(locDrift)* 50, 50)
+        mean_time = np.mean(y_time)
+        # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
+        plot_drivingOnly = plt.scatter(y_time, locDrift, 3)
+        plt.title("driving only derivation")
+        plt.ylabel("Drift")
+        plt.xlabel("Time in ms")
+        
+        plt.show()
     
     elif(interleaving == "none"):
         # Iterate over all words in all sentences
@@ -431,6 +439,6 @@ def runSimulations(nrSims = 100):
     
     
     return totalTime, meanDeviation, maxDeviation, Condition    
-            
 
-runSimulations(50)
+
+runTrial(interleaving="sentence")
