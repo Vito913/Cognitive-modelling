@@ -318,7 +318,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
 
     elif(interleaving == "bonus"):
         # Generate a random number as a start value for our 'checkVariable'. Once this threshold is reached, it'll drive, else itll keep typing.
-        checkVariable = np.random.randint(1, 6)
+        checkVariable = np.random.randint(1, nrWordsPerSentence + 1)
         thresholdReached = False
         # Iterate over all words in all sentences
         for i in range(nrSentences):
@@ -331,7 +331,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                     # If last round the treshold was reached, you reset the parameters and find a new treshold. You also add the retrievalTimeWord to the typingTime.
                     thresholdReached = False
                     checkVariable = np.random.randint(1, 6)
-                    typingTime += retrievalTimeWord
+                    typingTime += retrievalTimeWord +typingTime + timePerWord
                     
                 # Calculate the rest of the typing time for this word j
                 typingTime += timePerWord

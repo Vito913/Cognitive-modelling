@@ -254,6 +254,8 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         y_time = np.arange(0, len(locDrift)* 50, 50)
         print(len(y_time), len(locDrift))
         plot_sentence = plt.scatter(y_time, locDrift, 5)
+        
+        plt.text(0, 0, "Max drift: " + max_value + " m")
         plt.show()
     
     elif(interleaving == "drivingOnly"):
@@ -286,6 +288,8 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         y_time = np.arange(0, len(locDrift)* 50, 50)
         print(len(y_time), len(locDrift))
         plot_drivingOnly = plt.scatter(y_time, locDrift, 5)
+        
+        plt.text(0, 0, "Max drift: " + max_value + " m")
         plt.show()
     
     elif(interleaving == "none"):
@@ -306,11 +310,13 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                 trialTime += typingTime    
 
         # Making our plots. 
-
+        max_value = np.max(locDrift)
         y_time = np.arange(0, len(locDrift)* 50, 50)
         print(len(y_time), len(locDrift))
         plot_none = plt.scatter(y_time, locDrift, 5)
-
+        # add text to the plot
+        plt.text(0, 0, "Max drift: " + max_value + " m")
+        
         plt.show()
     else:
         print("strategy is not recognized!")
@@ -322,7 +328,7 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
         
     
 ### function to run multiple simulations. Needs to be defined by students (section 3 of assignment)
-def runSimulations(nrSims = 3):
+def runSimulations(nrSims = 100):
     # This function	should start by creating four vectors to store the output of each individual simulation:
     totalTime = []
     meanDeviation = []
