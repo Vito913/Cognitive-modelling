@@ -16,6 +16,8 @@
 
 import numpy as np
 import math
+import pandas as pd
+import seaborn as sns
 
 from matplotlib import pyplot as plt
 ###
@@ -418,16 +420,17 @@ def runSimulations(nrSims = 100):
             maxDeviation.append(max_dev)
             Condition.append(i)
     
-    # create a plot with the mean deviation as a function of the condition  horisontal axis: total trial time, vertical axis max lateral derivation
-    plot1 = plt.scatter(totalTime, meanDeviation, 3)
-    plot2 = plt.scatter(totalTime, maxDeviation, 3)
+    # Return a scatterplot where the total time is on one axis and the mean deviation is on the other axis.
+    # and for each of the interleaving conditions a different color and shape
+    # plt.scatter(totalTime, meanDeviation, 3)
+    data = pd.DataFrame({'Total Time': totalTime, 'Mean Deviation': meanDeviation, 'Max Deviation': maxDeviation, 'Condition': Condition})
+    plt.figure(figsize=(10, 7))
+    sns.scatterplot(x="Total Time", y="Mean Deviation", data=data, hue="Condition")
+
     plt.show()
     
-    # create a plot with the max deviation as a function of the condition  horisontal axis: total trial time, vertical axis max lateral derivation
-    # plot2 = plt.scatter(totalTime, maxDeviation, 3)
-    # plt.show()
-    # return the four vectors with simulation output
+    
     return totalTime, meanDeviation, maxDeviation, Condition    
             
 
-runSimulations()
+runSimulations(50)
