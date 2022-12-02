@@ -208,12 +208,12 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                             locDrift.append(vehiclePosition)
                               
         # Making our plots. 
-        max_value = np.max(locDrift)
-        mean_drift = np.mean(locDrift)
-        y_time = np.arange(0, len(locDrift)* 50, 50)
-        mean_time = np.mean(y_time)
-        plot_word = plt.scatter(y_time, locDrift, 3)
-        plt.show()
+        # max_value = np.max(locDrift)
+        # mean_drift = np.mean(locDrift)
+        # y_time = np.arange(0, len(locDrift)* 50, 50)
+        # mean_time = np.mean(y_time)
+        # plot_word = plt.scatter(y_time, locDrift, 3)
+        # plt.show()
 
     elif(interleaving == "sentence"):
         # Iterate over all words in all sentences
@@ -251,14 +251,14 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                             locDrift.append(vehiclePosition)
 
         # Making our plots. 
-        max_value = np.max(locDrift)
-        mean_drift = np.mean(locDrift)
-        y_time = np.arange(0, len(locDrift)* 50, 50)
-        mean_time = np.mean(y_time)
-        # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
-        plot_sentence = plt.scatter(y_time, locDrift, 3)
+        # max_value = np.max(locDrift)
+        # mean_drift = np.mean(locDrift)
+        # y_time = np.arange(0, len(locDrift)* 50, 50)
+        # mean_time = np.mean(y_time)
+        # # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
+        # plot_sentence = plt.scatter(y_time, locDrift, 3)
 
-        plt.show()
+        # plt.show()
     
     elif(interleaving == "drivingOnly"):
         # Iterate over all words in all sentences
@@ -288,15 +288,15 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                             locDrift.append(vehiclePosition)
 
         # Making our plots. 
-        max_value = np.max(locDrift)
-        mean_drift = np.mean(locDrift)
-        y_time = np.arange(0, len(locDrift)* 50, 50)
-        mean_time = np.mean(y_time)
-        # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
-        plot_drivingOnly = plt.scatter(y_time, locDrift, 3)
+        # max_value = np.max(locDrift)
+        # mean_drift = np.mean(locDrift)
+        # y_time = np.arange(0, len(locDrift)* 50, 50)
+        # mean_time = np.mean(y_time)
+        # # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
+        # plot_drivingOnly = plt.scatter(y_time, locDrift, 3)
 
-        plt.text(0, 0, "Max drift: " + max_value + " m")
-        plt.show()
+        # plt.text(0, 0, "Max drift: " + max_value + " m")
+        # plt.show()
     
     elif(interleaving == "none"):
         # Iterate over all words in all sentences
@@ -321,15 +321,15 @@ def runTrial(nrWordsPerSentence =5,nrSentences=3,nrSteeringMovementsWhenSteering
                 trialTime += typingTime    
 
         # Making our plots. 
-        max_value = np.max(locDrift)
-        mean_drift = np.mean(locDrift)
-        y_time = np.arange(0, len(locDrift)* 50, 50)
-        mean_time = np.mean(y_time)
-        # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
-        plot_none = plt.scatter(y_time, locDrift, 3)
+        # max_value = np.max(locDrift)
+        # mean_drift = np.mean(locDrift)
+        # y_time = np.arange(0, len(locDrift)* 50, 50)
+        # mean_time = np.mean(y_time)
+        # # print("Max Drift= ", max_value, "Mean Drift= ", mean_drift, "Mean Time= ", mean_time)
+        # plot_none = plt.scatter(y_time, locDrift, 3)
 
         # add text to the plot
-        plt.show()
+        # plt.show()
 
     elif(interleaving == "bonus"):
         # Generate a random number as a start value for our 'checkVariable'. Once this threshold is reached, it'll drive, else it'll keep typing.
@@ -417,6 +417,17 @@ def runSimulations(nrSims = 100):
             meanDeviation.append(mean_dev)
             maxDeviation.append(max_dev)
             Condition.append(i)
+    
+    # create a plot with the mean deviation as a function of the condition  horisontal axis: total trial time, vertical axis max lateral derivation
+    plot1 = plt.scatter(totalTime, meanDeviation, 3)
+    plot2 = plt.scatter(totalTime, maxDeviation, 3)
+    plt.show()
+    
+    # create a plot with the max deviation as a function of the condition  horisontal axis: total trial time, vertical axis max lateral derivation
+    # plot2 = plt.scatter(totalTime, maxDeviation, 3)
+    # plt.show()
+    # return the four vectors with simulation output
+    return totalTime, meanDeviation, maxDeviation, Condition    
+            
 
-runTrial(5,3,2,'bonus')
 runSimulations()
