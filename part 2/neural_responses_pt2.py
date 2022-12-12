@@ -3,7 +3,8 @@ import numpy as np
 import os
 from sklearn import svm
 from sklearn.model_selection import train_test_split
-
+from sklearn.metrics import confusion_matrix, plot_confusion_matrix
+import matplotlib.pyplot as plt
 #==========================================Data Pre Processing========================================================#
 
 ## Get the path of the file
@@ -73,8 +74,6 @@ def get_labels_and_data(dataset):
     data = dataset.iloc[:,:-1]
     return labels, data
 
-print(get_labels_and_data(training_dataset))
-
 #==========================================SVM========================================================#
 
 y,x = get_labels_and_data(training_dataset)
@@ -82,3 +81,21 @@ y,x = get_labels_and_data(training_dataset)
 clf = svm.SVC()
 clf.fit(x,y)
 clf.predict(test_dataset.iloc[:,:-1])
+
+# Create a confusion matrix to see how well the model performed
+y_true = test_dataset.iloc[:,-1]
+y_pred = clf.predict(test_dataset.iloc[:,:-1])
+print(confusion_matrix(y_true, y_pred))
+# Create a plot confusion matrix to see how well the model performed
+
+titles_options = [("Confusion matrix, without normalization", None),
+                  ("Normalized confusion matrix", 'true')]
+for title, normalize in titles_options:
+    disp = plot_confusion_matrix(clf, test_dataset.iloc[:,:-1], test_dataset.iloc[:,-1],
+                                 display_labels=['animate','inanimate'],
+                                 cmap=plt.cm.Blues,
+                                 normalize=normalize)
+    disp.ax_.set_title(title)
+    print(title)
+    print(disp.confusion_matrix)
+plt.show()
