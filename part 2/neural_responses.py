@@ -1,10 +1,8 @@
 from math import sqrt
 import os
 import pandas as pd
-from scipy import stats
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn import svm
 
 # Returns a path that always points to the same file 
 def file_path(file_path):
