@@ -1,9 +1,84 @@
 import pandas as pd
 import numpy as np
 import os
+from sklearn import svm
+from sklearn.model_selection import train_test_split
 
+#==========================================Data Pre Processing========================================================#
+
+## Get the path of the file
 def file_path(file_path):
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
     abs_file_path = os.path.join(script_dir, file_path)
     return abs_file_path
 
+# Opens the category file and returns an array of the categories "one hot🔥🔥 encoding" model
+vectors = file_path("CategoryVectors.txt")
+vector_data = open(vectors, 'r')
+
+# Returns the data of the labels for the categories, currently unsued and as the categories were hardcoded
+labels = file_path("CategoryLabels.txt")
+label_data = open(labels, 'r')
+
+# The categories that the model will be trained on
+category_vectors = ["animate","inanimate","human","nonhumani","body","face","natObj","artiObj","rand24","rand48","other48","monkeyape"]
+
+
+# Get the data from the categoryVectors file and append it to a dataframe
+df = pd.DataFrame(data= vector_data)
+
+# separate the data in the dataframe by the "," characters
+df = df[0].str.split(",", expand=True)
+
+# Remove the "\n" character from the last column
+df[11] = df[11].str.replace("\n", "")
+
+# removes the first row of the dataframe
+df = df.iloc[1:]
+
+df.index = df.index -1
+
+# adds the column names to the dataframe
+df.columns = category_vectors
+
+# load a different dataframe containing data from NeuralResponses.txt
+df2 = pd.read_csv(open(file_path("NeuralResponses_S2.txt"),"r"), sep=",")
+
+# Adds the two dataframes together
+df = pd.concat([df, df2], axis=1)
+
+# Create a list with 22 1's and 22 -1's
+labels = []
+for i in range(44):
+    labels.append(1)
+for i in range(44):
+    labels.append(-1)
+    
+
+# Reomves the first 12 columns from the dataframe
+df = df.iloc[:,12:]
+
+# append animate_labels to the df2 dataframe
+animate_labels = pd.DataFrame(labels,columns=["labels"])
+data = pd.concat([df, animate_labels], axis=1)
+
+
+# Splits the data into a training and test dataset
+training_dataset, test_dataset = train_test_split(data,test_size=0.5, random_state=42)
+print(training_dataset)
+
+# Returns the labels and the data from the dataset where the labels are the last column in the dataset
+def get_labels_and_data(dataset):
+    labels = dataset.iloc[:,-1]
+    data = dataset.iloc[:,:-1]
+    return labels, data
+
+print(get_labels_and_data(training_dataset))
+
+#==========================================SVM========================================================#
+
+y,x = get_labels_and_data(training_dataset)
+
+clf = svm.SVC()
+clf.fit(x,y)
+clf.predict(test_dataset.iloc[:,:-1])
