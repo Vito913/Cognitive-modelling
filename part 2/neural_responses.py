@@ -1,6 +1,10 @@
+from math import sqrt
 import os
 import pandas as pd
 #import tensorflow as tf
+from scipy import stats
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 # Returns a path that always points to the same file 
@@ -59,8 +63,26 @@ inanimate_data = inanimate.iloc[:, 12:]
 animate_cat = animate.iloc[:, 0:12]
 inanimate_cat = inanimate.iloc[:, 0:12]
 
-# calculate the mean of the neural responses for the animate and inanimate objects
+# Calculate the average value for each voxel in a row
 
-animate_mean = animate_data.mean().std()
-inanimate_mean = inanimate_data.mean().std()
-print(inanimate_mean)
+animate_mean = animate_data.mean(axis=1)
+inanimate_mean = inanimate_data.mean(axis=1)
+
+# calculate the difference for each value within the animate and inanimate dataframes
+overall_mean = pd.DataFrame()
+list_a = [] 
+for i in range(len(animate_mean)):
+    list_a.append(animate_mean.iloc[i] - inanimate_mean.iloc[i])    
+
+overall_mean['mean'] = list_a
+    
+std_overall = np.std(list_a)
+mean_overall = overall_mean.mean()
+
+print(std_overall)
+
+N = 44
+ 
+t = mean_overall/ (std_overall/ sqrt(N))     
+print(t)
+
