@@ -1,11 +1,10 @@
 from math import sqrt
 import os
 import pandas as pd
-#import tensorflow as tf
 from scipy import stats
 import matplotlib.pyplot as plt
 import numpy as np
-
+from sklearn import svm
 
 # Returns a path that always points to the same file 
 def file_path(file_path):
@@ -79,10 +78,30 @@ overall_mean['mean'] = list_a
 std_overall = np.std(list_a)
 mean_overall = overall_mean.mean()
 
-print(std_overall)
 
 N = 44
  
 t = mean_overall/ (std_overall/ sqrt(N))     
 print(t)
 
+# Create a bar plot of average voxel response for animate and inanimate objects.
+# Needs to have a error bar added to it to indicate the standard error of the mean
+
+animate_sem = animate_data.sem(axis=1)
+inanimate_sem = inanimate_data.sem(axis=1)
+
+plt.bar(1, animate_mean.mean(), yerr=animate_sem.mean(), align='center', alpha=0.5, ecolor='black', capsize=10)
+plt.bar(2, inanimate_mean.mean(), yerr=inanimate_sem.mean(), align='center', alpha=0.5, ecolor='black', capsize=10)
+plt.xticks([1, 2], ['Animate', 'Inanimate'])
+plt.axhline(y=0, color='black')
+plt.ylabel('Mean voxel response')
+plt.title('Mean voxel response for animate and inanimate objects')
+plt.show()
+
+#Use a bar plot to visualize the difference values of the first 20 voxels where the responses should be animate - inanimate
+overall_mean = overall_mean.iloc[0:20]
+plt.bar(overall_mean.index, overall_mean['mean'], align='center', alpha=0.5, ecolor='black', capsize=10)
+plt.axhline(y=0, color='black')
+plt.ylabel('Mean voxel response')
+plt.title('Mean voxel response for animate and inanimate objects')
+plt.show()
