@@ -99,3 +99,4 @@ for title, normalize in titles_options:
     print(title)
     print(disp.confusion_matrix)
 plt.show()
+

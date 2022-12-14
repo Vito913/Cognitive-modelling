@@ -57,14 +57,14 @@ inanimate = df.loc[df['inanimate'] == '1']
 # split the data where the neural responses are and where the categories are
 animate_data = animate.iloc[:, 12:]
 inanimate_data = inanimate.iloc[:, 12:]
-animate_cat = animate.iloc[:, 0:12]
-inanimate_cat = inanimate.iloc[:, 0:12]
 
 # Calculate the average value for each voxel in a row
 
 animate_mean = animate_data.mean(axis=1)
 inanimate_mean = inanimate_data.mean(axis=1)
 
+
+ 
 # calculate the difference for each value within the animate and inanimate dataframes
 overall_mean = pd.DataFrame()
 list_a = [] 
@@ -72,7 +72,9 @@ for i in range(len(animate_mean)):
     list_a.append(animate_mean.iloc[i] - inanimate_mean.iloc[i])    
 
 overall_mean['mean'] = list_a
-    
+
+
+## Calculate the t-Value with the given formula   
 std_overall = np.std(list_a)
 mean_overall = overall_mean.mean()
 
@@ -85,21 +87,52 @@ print(t)
 # Create a bar plot of average voxel response for animate and inanimate objects.
 # Needs to have a error bar added to it to indicate the standard error of the mean
 
-animate_sem = animate_data.sem(axis=1)
-inanimate_sem = inanimate_data.sem(axis=1)
+# Standard error of the mean is neccessary instead of the standard deveiation
 
-plt.bar(1, animate_mean.mean(), yerr=animate_sem.mean(), align='center', alpha=0.5, ecolor='black', capsize=10)
-plt.bar(2, inanimate_mean.mean(), yerr=inanimate_sem.mean(), align='center', alpha=0.5, ecolor='black', capsize=10)
-plt.xticks([1, 2], ['Animate', 'Inanimate'])
-plt.axhline(y=0, color='black')
-plt.ylabel('Mean voxel response')
-plt.title('Mean voxel response for animate and inanimate objects')
+animate_mean = animate_data.mean(axis=1)
+inanimate_mean = inanimate_data.mean(axis=1)
+
+animate_sem = animate_mean.sem()
+inanimate_sem = inanimate_mean.sem()
+
+plt.bar(1,animate_mean.mean(),yerr= animate_sem.mean(),align="center",alpha=0.7,ecolor="red",capsize=10)
+plt.bar(2,inanimate_mean.mean(),yerr=animate_sem.mean(),align="center",alpha=0.7,ecolor="red",capsize=10)
+plt.xticks([1,2],["animate","inanimate"])
+plt.axhline(y=0,color="black")
+
+plt.ylabel("Response Amplitude")
+plt.xlabel("Average Response Amplitude")
 plt.show()
 
-#Use a bar plot to visualize the difference values of the first 20 voxels where the responses should be animate - inanimate
-overall_mean = overall_mean.iloc[0:20]
-plt.bar(overall_mean.index, overall_mean['mean'], align='center', alpha=0.5, ecolor='black', capsize=10)
-plt.axhline(y=0, color='black')
-plt.ylabel('Mean voxel response')
-plt.title('Mean voxel response for animate and inanimate objects')
+#took the mean of all animate of 0 axis and for inanimate then - them get first 20
+
+# plt.bar(first20.index, first20["mean"], align='center', alpha=0.5, ecolor='black', capsize=10)
+# plt.axhline(y=0, color='black')
+# plt.ylabel('Mean voxel response')
+# plt.title('Mean voxel response for animate and inanimate objects')
+# plt.show()
+
+# Different axes mean values for the second graph
+
+zero_axis_animate_mean = animate_data.mean(axis=0)
+zero_axis_inanimate_mean = inanimate_data.mean(axis=0)
+print(zero_axis_animate_mean)
+# To get the overall mean we need to - the first from the second mean for each value in the mean
+
+amplitude = np.array(zero_axis_animate_mean - zero_axis_inanimate_mean)
+# get the first 20 values from the amplitude array
+amplitude = amplitude[0:20]
+print(amplitude)
+
+a= []
+for i in range(20):
+    a.append(i)
+
+print(len(a))
+print(len(amplitude))
+
+plt.bar(a,amplitude,align="center",alpha=0.5,ecolor="black",capsize=10)
+plt.axhline(y=0,color="black")
+plt.xlabel("animate - inanimate")
+plt.ylabel("Response amplitude")
 plt.show()
