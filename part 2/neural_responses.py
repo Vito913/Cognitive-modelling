@@ -48,9 +48,12 @@ df.columns = category_vectors
 df2 = pd.read_csv(open(file_path("NeuralResponses_S1.txt"),"r"), sep=",")
 
 # Adds the two dataframes together
+df_data = pd.read_csv(open(file_path("NeuralResponses_S2.txt"),"r"),sep=",")
+
+df_pt2_full = pd.DataFrame(data=df_data)
 
 df_full = pd.concat([df, df2], axis=1)
-
+df_pt2_full = pd.concat([df,df2],axis=1)
 
 # Creates two dataframes, one for the animate objects and one for the inanimate objects
 animate = df_full.loc[df['animate'] == '1']
@@ -132,9 +135,6 @@ def plot2():
 
 
 #============================= Part 2 ===================================#
-df_data = pd.read_csv(open(file_path("NeuralResponses_S2.txt"),"r"),sep=",")
-
-df_pt2 = pd.DataFrame(data=df_data)
 # Create a list with 22 1's and 22 -1's
 labels = []
 for i in range(44):
@@ -144,7 +144,7 @@ for i in range(44):
     
 labels = np.array(labels)
 # Reomves the first 12 columns from the dataframe
-df_pt2 = df_pt2.iloc[:,12:]
+df_pt2 = df_pt2_full.iloc[:,12:]
 
 
 # append animate_labels to the df2 dataframe
@@ -195,10 +195,10 @@ coeff = np.corrcoef(weights,amplitude)
 #====================Human vs Non-human======================#
 
 # Gets the human and non human values from the dataframe containing all the data (Categories + voxel responses)
-human = df_full.loc[df_full["human"] == "1"]
+human = df_pt2_full.loc[df_pt2_full["human"] == "1"]
 human.drop(human.tail(4).index, inplace=True)
 print(human)
-nonhuman = df_full.loc[df_full["nonhumani"] == "1"]
+nonhuman = df_pt2_full.loc[df_pt2_full["nonhumani"] == "1"]
 
 human_df = pd.concat([human,nonhuman])
 human_df = human_df.iloc[:,12:]
