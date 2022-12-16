@@ -199,24 +199,50 @@ human = df_full.loc[df_full["human"] == "1"]
 human.drop(human.tail(4).index, inplace=True)
 print(human)
 nonhuman = df_full.loc[df_full["nonhumani"] == "1"]
-human = human.dropna()
 
 human_df = pd.concat([human,nonhuman])
 human_df = human_df.iloc[:,12:]
 print(human_df)
+human_df = human_df.reset_index(drop=True)
+
 
 # Creates a list that will contain the labels on the
-b= []
-for i in range(40):
-    if i < (20):
-        b.append(1)
-    else:
-        b.append(-1)
+
+b = [1 if x <20 else -1 for x in range(40)]
 
 # Creates a np array from the list created in the loop        
 b= np.array(b)
 labels2 = pd.DataFrame(b, columns=["labels"])
 split_ds = pd.concat([human_df,labels2],axis=1)
+print(split_ds)
 
 train_data2, test_data2= train_test_split(split_ds,test_size=0.5,random_state=47)
 print(train_data2)
+
+y2,x2 = get_labels_and_data(train_data2)
+
+clf2 = svm.SVC(kernel="linear")
+clf2.fit(x2,y2)
+
+y_true = test_data2.iloc[:,-1]
+y_pred = clf2.predict(test_data2.iloc[:,:-1])
+# Create a plot confusion matrix to see how well the model performed
+
+
+# Gets the first 20 weights from the model.
+weights2 = clf2.coef_
+
+weights2 = weights2[0]
+weights2 = weights2[0:20]
+
+
+
+# create a plot to compare the weights and amplitudes
+def plot4():
+    plt.scatter(weights2,amplitude)
+    plt.xlabel("weights")
+    plt.ylabel("amplitude")
+    plt.show()
+
+coeff = np.corrcoef(weights2,amplitude)
+
