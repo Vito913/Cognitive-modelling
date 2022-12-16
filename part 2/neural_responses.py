@@ -49,12 +49,12 @@ df2 = pd.read_csv(open(file_path("NeuralResponses_S1.txt"),"r"), sep=",")
 
 # Adds the two dataframes together
 
-df = pd.concat([df, df2], axis=1)
+df_full = pd.concat([df, df2], axis=1)
 
 
 # Creates two dataframes, one for the animate objects and one for the inanimate objects
-animate = df.loc[df['animate'] == '1']
-inanimate = df.loc[df['inanimate'] == '1']
+animate = df_full.loc[df['animate'] == '1']
+inanimate = df_full.loc[df['inanimate'] == '1']
 
 
 
@@ -79,7 +79,7 @@ a= []
 for i in range(20):
     a.append(i)
 
-
+a = np.array(a)
 
  
 # calculate the difference for each value within the animate and inanimate dataframes
@@ -112,25 +112,29 @@ animate_sem = animate_mean.sem()
 inanimate_sem = inanimate_mean.sem()
 
 #============================ Plots ===================================#
+def plot1():
+        
+    plt.bar(1,animate_mean.mean(),yerr= animate_sem.mean(),align="center",alpha=0.7,ecolor="red",capsize=10)
+    plt.bar(2,inanimate_mean.mean(),yerr=inanimate_sem.mean(),align="center",alpha=0.7,ecolor="red",capsize=10)
+    plt.xticks([1,2],["animate","inanimate"])
+    plt.axhline(y=0,color="black")
 
-plt.bar(1,animate_mean.mean(),yerr= animate_sem.mean(),align="center",alpha=0.7,ecolor="red",capsize=10)
-plt.bar(2,inanimate_mean.mean(),yerr=inanimate_sem.mean(),align="center",alpha=0.7,ecolor="red",capsize=10)
-plt.xticks([1,2],["animate","inanimate"])
-plt.axhline(y=0,color="black")
+    plt.ylabel("Response Amplitude")
+    plt.xlabel("Average Response Amplitude")
+    plt.show()
 
-plt.ylabel("Response Amplitude")
-plt.xlabel("Average Response Amplitude")
-plt.show()
-
-plt.bar(a,amplitude,align="center",alpha=0.5,ecolor="black",capsize=10)
-plt.axhline(y=0,color="black")
-plt.xlabel("animate - inanimate")
-plt.ylabel("Response amplitude")
-plt.show()
+def plot2():
+    plt.bar(a,amplitude,align="center",alpha=0.5,ecolor="black",capsize=10)
+    plt.axhline(y=0,color="black")
+    plt.xlabel("animate - inanimate")
+    plt.ylabel("Response amplitude")
+    plt.show()
 
 
 #============================= Part 2 ===================================#
+df_data = pd.read_csv(open(file_path("NeuralResponses_S2.txt"),"r"),sep=",")
 
+df_pt2 = pd.DataFrame(data=df_data)
 # Create a list with 22 1's and 22 -1's
 labels = []
 for i in range(44):
@@ -138,17 +142,20 @@ for i in range(44):
 for i in range(44):
     labels.append(-1)
     
-
+labels = np.array(labels)
 # Reomves the first 12 columns from the dataframe
-df = df.iloc[:,12:]
+df_pt2 = df_pt2.iloc[:,12:]
+
 
 # append animate_labels to the df2 dataframe
 animate_labels = pd.DataFrame(labels,columns=["labels"])
-data = pd.concat([df, animate_labels], axis=1)
+data = pd.concat([df_pt2, animate_labels], axis=1)
 
+#==========================================SVM========================================================#
 
 # Splits the data into a training and test dataset
 training_dataset, test_dataset = train_test_split(data,test_size=0.5, random_state=42)
+
 
 # Returns the labels and the data from the dataset where the labels are the last column in the dataset
 def get_labels_and_data(dataset):
@@ -156,10 +163,7 @@ def get_labels_and_data(dataset):
     data = dataset.iloc[:,:-1]
     return labels, data
 
-#==========================================SVM========================================================#
-
 y,x = get_labels_and_data(training_dataset)
-
 clf = svm.SVC(kernel="linear")
 clf.fit(x,y)
 
@@ -175,16 +179,44 @@ weights = clf.coef_
 
 weights = weights[0]
 weights = weights[0:20]
-print(weights)
 
-print(len(weights),len(amplitude))
 
 
 # create a plot to compare the weights and amplitudes
-
-plt.scatter(weights,amplitude)
-plt.xlabel("weights")
-plt.ylabel("amplitude")
-plt.show()
+def plot3():
+    plt.scatter(weights,amplitude)
+    plt.xlabel("weights")
+    plt.ylabel("amplitude")
+    plt.show()
 
 coeff = np.corrcoef(weights,amplitude)
+
+
+#====================Human vs Non-human======================#
+
+# Gets the human and non human values from the dataframe containing all the data (Categories + voxel responses)
+human = df_full.loc[df_full["human"] == "1"]
+human.drop(human.tail(4).index, inplace=True)
+print(human)
+nonhuman = df_full.loc[df_full["nonhumani"] == "1"]
+human = human.dropna()
+
+human_df = pd.concat([human,nonhuman])
+human_df = human_df.iloc[:,12:]
+print(human_df)
+
+# Creates a list that will contain the labels on the
+b= []
+for i in range(40):
+    if i < (20):
+        b.append(1)
+    else:
+        b.append(-1)
+
+# Creates a np array from the list created in the loop        
+b= np.array(b)
+labels2 = pd.DataFrame(b, columns=["labels"])
+split_ds = pd.concat([human_df,labels2],axis=1)
+
+train_data2, test_data2= train_test_split(split_ds,test_size=0.5,random_state=47)
+print(train_data2)
