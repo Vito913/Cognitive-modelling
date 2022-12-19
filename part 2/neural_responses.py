@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import svm
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, plot_confusion_matrix
+from scipy.stats import ttest_ind
 
 # Returns a path that always points to the same file 
 def file_path(file_path):
@@ -167,6 +167,7 @@ y,x = get_labels_and_data(training_dataset)
 clf = svm.SVC(kernel="linear")
 clf.fit(x,y)
 
+y_test,x_test = get_labels_and_data(test_dataset)
 
 # Create a confusion matrix to see how well the model performed
 y_true = test_dataset.iloc[:,-1]
@@ -181,7 +182,8 @@ weights = weights[0]
 weights = weights[0:20]
 
 
-
+print(weights)
+print(amplitude)
 # create a plot to compare the weights and amplitudes
 def plot3():
     plt.scatter(weights,amplitude)
@@ -191,18 +193,22 @@ def plot3():
 
 coeff = np.corrcoef(weights,amplitude)
 
+def get_svm_accuracy():
+    predictions= clf.predict(x_test)
+    correct = sum(predictions == y_test)
+    accuracy = correct/len(predictions)
+    accuracy_percent = accuracy * 100
+    return accuracy_percent
 
 #====================Human vs Non-human======================#
 
 # Gets the human and non human values from the dataframe containing all the data (Categories + voxel responses)
 human = df_pt2_full.loc[df_pt2_full["human"] == "1"]
 human.drop(human.tail(4).index, inplace=True)
-print(human)
 nonhuman = df_pt2_full.loc[df_pt2_full["nonhumani"] == "1"]
 
 human_df = pd.concat([human,nonhuman])
 human_df = human_df.iloc[:,12:]
-print(human_df)
 human_df = human_df.reset_index(drop=True)
 
 
@@ -214,10 +220,8 @@ b = [1 if x <20 else -1 for x in range(40)]
 b= np.array(b)
 labels2 = pd.DataFrame(b, columns=["labels"])
 split_ds = pd.concat([human_df,labels2],axis=1)
-print(split_ds)
 
 train_data2, test_data2= train_test_split(split_ds,test_size=0.5,random_state=47)
-print(train_data2)
 
 y2,x2 = get_labels_and_data(train_data2)
 
@@ -245,4 +249,37 @@ def plot4():
     plt.show()
 
 coeff = np.corrcoef(weights2,amplitude)
+
+
+#========================Part 3===================================#
+
+# Use 1-correlation where the correlation is the PEarsonn's corrrelation coefficient
+
+df_pt3 = df_full.iloc[:,12:]
+# Get the neuralResponses1 df
+pearson_corr = 1- np.corrcoef(df_pt3)
+df_corr = pd.DataFrame(pearson_corr)
+
+def plot5():
+    plt.figure()
+    plt.title("correlation Matrix")
+    plt.imshow(pearson_corr,cmap="Oranges",interpolation="nearest",vmin=0.8,vmax=1.2)
+    plt.colorbar()
+    plt.show()
+    
+mask = pd.DataFrame(columns =range(88),index=range(88))
+mask.iloc[:44,:44]= 1
+mask.iloc[44:,44:]= 1
+mask.iloc[:44,44:]= 0
+mask.iloc[44:,:44]= 0
+maska = df_corr.mask(mask==0)
+maskb = df_corr.mask(mask==1)
+
+
+def plot6():
+    plt.figure()
+    plt.title("Masked correlation matrix")
+    plt.imshow(maska,cmap="Oranges",interpolation="nearest",vmin=0.8,vmax=1.2)
+    plt.colorbar()
+    plt.show()
 
