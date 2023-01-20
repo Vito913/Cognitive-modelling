@@ -1,0 +1,181 @@
+ID,block,trial,query,querydetail,querytype,estimate,starttime,endtime,RT
+510,1,1,What is the probability that the weather will be  cloudy and not windy on a random day in England?, cloudy and not windy,notAandB,40,2507813.569730,2507842.035597,28.465868
+510,1,2,What is the probability that the weather will be  warm or snowy on a random day in England?, warm or snowy,AorB,20,2507842.136405,2507849.426343,7.289938
+510,1,3,If the weather in England is cold on a random daywhat is the probability that the weather will also be not rainy on the same day?, not rainy given cold,notBgA,60,2507849.619786,2507882.211917,32.592132
+510,1,4,What is the probability that the weather will be  not windy and not cloudy on a random day in England?, not windy and not cloudy,notAandnotB,30,2507882.403220,2507890.235690,7.832470
+510,1,5,What is the probability that the weather will be  not cold on a random day in England?, not cold,notA,30,2507890.386514,2507901.723474,11.336960
+510,1,6,If the weather in England is not windy on a random daywhat is the probability that the weather will also be not cloudy on the same day?, not cloudy given not windy,notBgnotA,40,2507901.886590,2507931.434974,29.548384
+510,1,7,What is the probability that the weather will be  not warm and not snowy on a random day in England?, not warm and not snowy,notAandnotB,80,2507931.569966,2507974.666091,43.096125
+510,1,8,What is the probability that the weather will be  windy on a random day in England?, windy,A,80,2507974.820053,2507979.706049,4.885996
+510,1,9,What is the probability that the weather will be  cold and not rainy on a random day in England?, cold and not rainy,AandnotB,70,2507979.870063,2507984.665872,4.795809
+510,1,10,If the weather in England is not rainy on a random daywhat is the probability that the weather will also be not cold on the same day?, not cold given not rainy,notAgnotB,70,2507984.853346,2508004.353513,19.500166
+510,1,11,What is the probability that the weather will be  cloudy on a random day in England?, cloudy,B,70,2508004.486741,2508011.465541,6.978801
+510,1,12,What is the probability that the weather will be  warm and not snowy on a random day in England?, warm and not snowy,AandnotB,30,2508011.653408,2508018.961317,7.307909
+510,1,13,What is the probability that the weather will be  rainy on a random day in England?, rainy,B,70,2508019.170100,2508023.889267,4.719167
+510,1,14,What is the probability that the weather will be  cloudy or not windy on a random day in England?, cloudy or not windy,notAorB,60,2508024.086774,2508056.080661,31.993887
+510,1,15,What is the probability that the weather will be  windy and not cloudy on a random day in England?, windy and not cloudy,AandnotB,20,2508056.236833,2508075.696236,19.459403
+510,1,16,What is the probability that the weather will be  not windy or not cloudy on a random day in England?, not windy or not cloudy,notAornotB,20,2508075.870171,2508120.751417,44.881246
+510,1,17,What is the probability that the weather will be  warm on a random day in England?, warm,A,20,2508120.903605,2508128.023417,7.119812
+510,1,18,What is the probability that the weather will be  windy or not cloudy on a random day in England?, windy or not cloudy,AornotB,60,2508128.170327,2508159.486732,31.316405
+510,1,19,What is the probability that the weather will be  snowy on a random day in England?, snowy,B,5,2508159.653678,2508167.059051,7.405373
+510,1,20,If the weather in England is not snowy on a random daywhat is the probability that the weather will also be warm on the same day?, warm given not snowy,AgnotB,0,2508167.220364,2508172.790772,5.570408
+510,1,21,If the weather in England is not rainy on a random daywhat is the probability that the weather will also be cold on the same day?, cold given not rainy,AgnotB,70,2508173.019837,2508185.566628,12.546791
+510,1,22,What is the probability that the weather will be  not windy on a random day in England?, not windy,notA,60,2508185.737048,2508193.006102,7.269054
+510,1,23,What is the probability that the weather will be  warm and snowy on a random day in England?, warm and snowy,AandB,0,2508193.153735,2508198.077997,4.924262
+510,1,24,What is the probability that the weather will be  cold on a random day in England?, cold,A,80,2508198.287059,2508208.781906,10.494847
+510,1,25,What is the probability that the weather will be  rainy or not cold on a random day in England?, rainy or not cold,notAorB,60,2508208.937107,2508235.333410,26.396303
+510,1,26,If the weather in England is not cold on a random daywhat is the probability that the weather will also be not rainy on the same day?, not rainy given not cold,notBgnotA,30,2508235.453814,2508246.445114,10.991300
+510,1,27,What is the probability that the weather will be  cold or not rainy on a random day in England?, cold or not rainy,AornotB,70,2508246.537147,2508303.196334,56.659188
+510,1,28,If the weather in England is not warm on a random daywhat is the probability that the weather will also be not snowy on the same day?, not snowy given not warm,notBgnotA,90,2508303.353947,2508313.187931,9.833984
+510,1,29,What is the probability that the weather will be  cold or rainy on a random day in England?, cold or rainy,AorB,90,2508313.287294,2508319.332108,6.044814
+510,1,30,If the weather in England is rainy on a random daywhat is the probability that the weather will also be cold on the same day?, cold given rainy,AgB,90,2508319.420645,2508326.611727,7.191082
+510,1,31,What is the probability that the weather will be  not warm or not snowy on a random day in England?, not warm or not snowy,notAornotB,80,2508326.720663,2508334.163633,7.442970
+510,1,32,What is the probability that the weather will be  snowy and not warm on a random day in England?, snowy and not warm,notAandB,20,2508334.287308,2508365.818933,31.531625
+510,1,33,What is the probability that the weather will be  snowy or not warm on a random day in England?, snowy or not warm,notAorB,70,2508365.987358,2508375.794742,9.807384
+510,1,34,If the weather in England is snowy on a random daywhat is the probability that the weather will also be warm on the same day?, warm given snowy,AgB,0,2508375.870752,2508413.570249,37.699497
+510,1,35,What is the probability that the weather will be  not rainy on a random day in England?, not rainy,notB,40,2508413.720809,2508419.906025,6.185217
+510,1,36,What is the probability that the weather will be  not cloudy on a random day in England?, not cloudy,notB,30,2508420.004153,2508425.729907,5.725754
+510,1,37,If the weather in England is not warm on a random daywhat is the probability that the weather will also be snowy on the same day?, snowy given not warm,BgnotA,10,2508425.870835,2508434.465721,8.594886
+510,1,38,If the weather in England is cold on a random daywhat is the probability that the weather will also be rainy on the same day?, rainy given cold,BgA,70,2508434.637515,2508441.953603,7.316088
+510,1,39,What is the probability that the weather will be  windy or cloudy on a random day in England?, windy or cloudy,AorB,90,2508442.104170,2508448.529440,6.425270
+510,1,40,If the weather in England is not windy on a random daywhat is the probability that the weather will also be cloudy on the same day?, cloudy given not windy,BgnotA,40,2508448.670873,2508462.969186,14.298313
+510,1,41,If the weather in England is cloudy on a random daywhat is the probability that the weather will also be not windy on the same day?, not windy given cloudy,notAgB,20,2508463.137553,2508489.272798,26.135245
+510,1,42,What is the probability that the weather will be  rainy and not cold on a random day in England?, rainy and not cold,notAandB,30,2508489.404263,2508496.376633,6.972370
+510,1,43,What is the probability that the weather will be  not warm on a random day in England?, not warm,notA,80,2508496.520934,2508507.984343,11.463409
+510,1,44,What is the probability that the weather will be  not cold or not rainy on a random day in England?, not cold or not rainy,notAornotB,20,2508508.154312,2508517.520140,9.365829
+510,1,45,If the weather in England is snowy on a random daywhat is the probability that the weather will also be not warm on the same day?, not warm given snowy,notAgB,100,2508517.670974,2508543.927749,26.256775
+510,1,46,If the weather in England is not cloudy on a random daywhat is the probability that the weather will also be not windy on the same day?, not windy given not cloudy,notAgnotB,30,2508544.020963,2508580.583133,36.562170
+510,1,47,If the weather in England is rainy on a random daywhat is the probability that the weather will also be not cold on the same day?, not cold given rainy,notAgB,30,2508580.754451,2508599.118830,18.364379
+510,1,48,If the weather in England is warm on a random daywhat is the probability that the weather will also be snowy on the same day?, snowy given warm,BgA,0,2508599.321144,2508609.134620,9.813477
+510,1,49,If the weather in England is windy on a random daywhat is the probability that the weather will also be not cloudy on the same day?, not cloudy given windy,notBgA,20,2508609.304469,2508634.342020,25.037550
+510,1,50,If the weather in England is cloudy on a random daywhat is the probability that the weather will also be windy on the same day?, windy given cloudy,AgB,90,2508634.521211,2508645.333821,10.812610
+510,1,51,If the weather in England is not cloudy on a random daywhat is the probability that the weather will also be windy on the same day?, windy given not cloudy,AgnotB,10,2508645.421205,2508661.853492,16.432287
+510,1,52,If the weather in England is warm on a random daywhat is the probability that the weather will also be not snowy on the same day?, not snowy given warm,notBgA,100,2508662.004573,2508674.997303,12.992730
+510,1,53,What is the probability that the weather will be  windy and cloudy on a random day in England?, windy and cloudy,AandB,90,2508675.137942,2508679.861136,4.723195
+510,1,54,If the weather in England is windy on a random daywhat is the probability that the weather will also be cloudy on the same day?, cloudy given windy,BgA,90,2508679.987947,2508697.364754,17.376807
+510,1,55,What is the probability that the weather will be  not cold and not rainy on a random day in England?, not cold and not rainy,notAandnotB,30,2508697.471321,2508703.076675,5.605354
+510,1,56,What is the probability that the weather will be  cold and rainy on a random day in England?, cold and rainy,AandB,90,2508703.188009,2508723.164307,19.976299
+510,1,57,If the weather in England is not snowy on a random daywhat is the probability that the weather will also be not warm on the same day?, not warm given not snowy,notAgnotB,70,2508723.288003,2508734.852086,11.564083
+510,1,58,What is the probability that the weather will be  not snowy on a random day in England?, not snowy,notB,95,2508734.954707,2508742.963919,8.009212
+510,1,59,What is the probability that the weather will be  warm or not snowy on a random day in England?, warm or not snowy,AornotB,60,2508743.071418,2508751.309484,8.238066
+510,1,60,If the weather in England is not cold on a random daywhat is the probability that the weather will also be rainy on the same day?, rainy given not cold,BgnotA,40,2508751.421411,2508764.379518,12.958107
+510,2,1,If the weather in England is cold on a random daywhat is the probability that the weather will also be not rainy on the same day?, not rainy given cold,notBgA,60,2508764.488111,2508816.242606,51.754495
+510,2,2,What is the probability that the weather will be  snowy and not warm on a random day in England?, snowy and not warm,notAandB,20,2508816.404857,2508822.954470,6.549613
+510,2,3,What is the probability that the weather will be  cold or rainy on a random day in England?, cold or rainy,AorB,90,2508823.171559,2508838.858160,15.686601
+510,2,4,If the weather in England is rainy on a random daywhat is the probability that the weather will also be cold on the same day?, cold given rainy,AgB,90,2508838.938258,2508871.857567,32.919309
+510,2,5,What is the probability that the weather will be  cold and not rainy on a random day in England?, cold and not rainy,AandnotB,80,2508871.971644,2508877.833456,5.861812
+510,2,6,What is the probability that the weather will be  warm and not snowy on a random day in England?, warm and not snowy,AandnotB,60,2508877.938362,2508888.849239,10.910877
+510,2,7,What is the probability that the weather will be  not cold and not rainy on a random day in England?, not cold and not rainy,notAandnotB,40,2508889.005019,2508911.288849,22.283830
+510,2,8,What is the probability that the weather will be  windy on a random day in England?, windy,A,80,2508911.388365,2508921.545237,10.156871
+510,2,9,What is the probability that the weather will be  warm and snowy on a random day in England?, warm and snowy,AandB,0,2508921.655080,2508927.040698,5.385617
+510,2,10,What is the probability that the weather will be  warm on a random day in England?, warm,A,40,2508927.138425,2508932.584729,5.446305
+510,2,11,What is the probability that the weather will be  not cloudy on a random day in England?, not cloudy,notB,40,2508932.688412,2508995.639323,62.950911
+510,2,12,What is the probability that the weather will be  snowy or not warm on a random day in England?, snowy or not warm,notAorB,60,2508995.838537,2509001.855171,6.016633
+510,2,13,What is the probability that the weather will be  cold and rainy on a random day in England?, cold and rainy,AandB,90,2509002.038543,2509006.799083,4.760540
+510,2,14,What is the probability that the weather will be  not warm and not snowy on a random day in England?, not warm and not snowy,notAandnotB,80,2509006.938566,2509012.198980,5.260414
+510,2,15,If the weather in England is not cold on a random daywhat is the probability that the weather will also be not rainy on the same day?, not rainy given not cold,notBgnotA,60,2509012.355235,2509022.342805,9.987570
+510,2,16,What is the probability that the weather will be  windy and not cloudy on a random day in England?, windy and not cloudy,AandnotB,10,2509022.455258,2509027.846688,5.391430
+510,2,17,What is the probability that the weather will be  not cold or not rainy on a random day in England?, not cold or not rainy,notAornotB,40,2509027.988598,2509078.693772,50.705174
+510,2,18,What is the probability that the weather will be  warm or not snowy on a random day in England?, warm or not snowy,AornotB,70,2509078.805350,2509084.463003,5.657653
+510,2,19,What is the probability that the weather will be  cloudy or not windy on a random day in England?, cloudy or not windy,notAorB,70,2509084.572026,2509099.085397,14.513372
+510,2,20,If the weather in England is not snowy on a random daywhat is the probability that the weather will also be not warm on the same day?, not warm given not snowy,notAgnotB,60,2509099.222093,2509108.469223,9.247130
+510,2,21,What is the probability that the weather will be  snowy on a random day in England?, snowy,B,5,2509108.605412,2509147.317078,38.711666
+510,2,22,If the weather in England is not rainy on a random daywhat is the probability that the weather will also be not cold on the same day?, not cold given not rainy,notAgnotB,40,2509147.438821,2509158.804271,11.365450
+510,2,23,What is the probability that the weather will be  not windy and not cloudy on a random day in England?, not windy and not cloudy,notAandnotB,30,2509158.938811,2509165.348183,6.409371
+510,2,24,If the weather in England is not cloudy on a random daywhat is the probability that the weather will also be not windy on the same day?, not windy given not cloudy,notAgnotB,80,2509165.455496,2509179.443942,13.988446
+510,2,25,What is the probability that the weather will be  not snowy on a random day in England?, not snowy,notB,95,2509179.572204,2509197.659607,18.087402
+510,2,26,What is the probability that the weather will be  not rainy on a random day in England?, not rainy,notB,30,2509197.788908,2509205.707480,7.918572
+510,2,27,If the weather in England is not windy on a random daywhat is the probability that the weather will also be not cloudy on the same day?, not cloudy given not windy,notBgnotA,70,2509205.805594,2509219.307192,13.501599
+510,2,28,If the weather in England is snowy on a random daywhat is the probability that the weather will also be warm on the same day?, warm given snowy,AgB,0,2509219.405614,2509230.707299,11.301685
+510,2,29,What is the probability that the weather will be  cloudy on a random day in England?, cloudy,B,80,2509230.822309,2509236.627667,5.805358
+510,2,30,If the weather in England is not snowy on a random daywhat is the probability that the weather will also be warm on the same day?, warm given not snowy,AgnotB,40,2509236.722319,2509293.697900,56.975581
+510,2,31,If the weather in England is not windy on a random daywhat is the probability that the weather will also be cloudy on the same day?, cloudy given not windy,BgnotA,40,2509293.889080,2509312.489468,18.600388
+510,2,32,If the weather in England is not cold on a random daywhat is the probability that the weather will also be rainy on the same day?, rainy given not cold,BgnotA,20,2509312.572433,2509319.777351,7.204918
+510,2,33,What is the probability that the weather will be  warm or snowy on a random day in England?, warm or snowy,AorB,20,2509319.922467,2509324.937246,5.014779
+510,2,34,If the weather in England is windy on a random daywhat is the probability that the weather will also be cloudy on the same day?, cloudy given windy,BgA,90,2509325.089127,2509333.673107,8.583980
+510,2,35,What is the probability that the weather will be  rainy on a random day in England?, rainy,B,80,2509333.839134,2509339.026930,5.187796
+510,2,36,If the weather in England is cloudy on a random daywhat is the probability that the weather will also be not windy on the same day?, not windy given cloudy,notAgB,30,2509339.205813,2509355.928704,16.722891
+510,2,37,What is the probability that the weather will be  cold or not rainy on a random day in England?, cold or not rainy,AornotB,60,2509356.072513,2509400.415892,44.343379
+510,2,38,What is the probability that the weather will be  not cold on a random day in England?, not cold,notA,40,2509400.539276,2509407.303759,6.764483
+510,2,39,If the weather in England is not warm on a random daywhat is the probability that the weather will also be not snowy on the same day?, not snowy given not warm,notBgnotA,70,2509407.405922,2509436.919226,29.513304
+510,2,40,What is the probability that the weather will be  not windy on a random day in England?, not windy,notA,40,2509437.022679,2509441.631127,4.608448
+510,2,41,What is the probability that the weather will be  not windy or not cloudy on a random day in England?, not windy or not cloudy,notAornotB,30,2509441.739336,2509447.247047,5.507711
+510,2,42,What is the probability that the weather will be  windy and cloudy on a random day in England?, windy and cloudy,AandB,80,2509447.372691,2509450.846956,3.474265
+510,2,43,If the weather in England is not rainy on a random daywhat is the probability that the weather will also be cold on the same day?, cold given not rainy,AgnotB,60,2509450.956009,2509458.190830,7.234821
+510,2,44,What is the probability that the weather will be  cold on a random day in England?, cold,A,80,2509458.306047,2509462.118940,3.812893
+510,2,45,If the weather in England is windy on a random daywhat is the probability that the weather will also be not cloudy on the same day?, not cloudy given windy,notBgA,40,2509462.239392,2509471.350613,9.111221
+510,2,46,If the weather in England is rainy on a random daywhat is the probability that the weather will also be not cold on the same day?, not cold given rainy,notAgB,30,2509471.472743,2509485.382348,13.909605
+510,2,47,What is the probability that the weather will be  rainy or not cold on a random day in England?, rainy or not cold,notAorB,40,2509485.506099,2509490.870377,5.364278
+510,2,48,If the weather in England is not warm on a random daywhat is the probability that the weather will also be snowy on the same day?, snowy given not warm,BgnotA,10,2509490.989440,2509499.238077,8.248636
+510,2,49,What is the probability that the weather will be  not warm or not snowy on a random day in England?, not warm or not snowy,notAornotB,80,2509499.356116,2509504.253995,4.897879
+510,2,50,What is the probability that the weather will be  not warm on a random day in England?, not warm,notA,80,2509504.372771,2509509.029892,4.657122
+510,2,51,If the weather in England is not cloudy on a random daywhat is the probability that the weather will also be windy on the same day?, windy given not cloudy,AgnotB,10,2509509.139508,2509518.798639,9.659131
+510,2,52,What is the probability that the weather will be  windy or not cloudy on a random day in England?, windy or not cloudy,AornotB,70,2509518.906147,2509532.029464,13.123317
+510,2,53,What is the probability that the weather will be  rainy and not cold on a random day in England?, rainy and not cold,notAandB,40,2509532.139503,2509536.653388,4.513885
+510,2,54,If the weather in England is cold on a random daywhat is the probability that the weather will also be rainy on the same day?, rainy given cold,BgA,70,2509536.772858,2509545.165216,8.392358
+510,2,55,What is the probability that the weather will be  cloudy and not windy on a random day in England?, cloudy and not windy,notAandB,30,2509545.256205,2509550.909114,5.652908
+510,2,56,If the weather in England is cloudy on a random daywhat is the probability that the weather will also be windy on the same day?, windy given cloudy,AgB,80,2509551.006214,2509571.270588,20.264374
+510,2,57,What is the probability that the weather will be  windy or cloudy on a random day in England?, windy or cloudy,AorB,90,2509571.389568,2509584.948494,13.558926
+510,2,58,If the weather in England is warm on a random daywhat is the probability that the weather will also be not snowy on the same day?, not snowy given warm,notBgA,70,2509585.089599,2509596.276304,11.186705
+510,2,59,If the weather in England is warm on a random daywhat is the probability that the weather will also be snowy on the same day?, snowy given warm,BgA,0,2509596.406305,2509604.011950,7.605645
+510,2,60,If the weather in England is snowy on a random daywhat is the probability that the weather will also be not warm on the same day?, not warm given snowy,notAgB,100,2509604.139641,2509617.659912,13.520271
+510,3,1,What is the probability that the weather will be  not cold or not rainy on a random day in England?, not cold or not rainy,notAornotB,20,2509617.822985,2509625.236735,7.413749
+510,3,2,If the weather in England is rainy on a random daywhat is the probability that the weather will also be not cold on the same day?, not cold given rainy,notAgB,20,2509625.356339,2509636.310050,10.953711
+510,3,3,What is the probability that the weather will be  not cold on a random day in England?, not cold,notA,30,2509636.439700,2509643.175642,6.735941
+510,3,4,What is the probability that the weather will be  warm on a random day in England?, warm,A,20,2509643.256360,2509650.859710,7.603350
+510,3,5,What is the probability that the weather will be  cold on a random day in England?, cold,A,80,2509651.005855,2509654.531419,3.525564
+510,3,6,What is the probability that the weather will be  not rainy on a random day in England?, not rainy,notB,30,2509654.673076,2509657.875160,3.202084
+510,3,7,If the weather in England is not windy on a random daywhat is the probability that the weather will also be not cloudy on the same day?, not cloudy given not windy,notBgnotA,80,2509658.006400,2509670.412377,12.405977
+510,3,8,If the weather in England is not snowy on a random daywhat is the probability that the weather will also be warm on the same day?, warm given not snowy,AgnotB,60,2509670.556419,2509681.058740,10.502321
+510,3,9,If the weather in England is windy on a random daywhat is the probability that the weather will also be not cloudy on the same day?, not cloudy given windy,notBgA,20,2509681.156437,2509687.234617,6.078179
+510,3,10,What is the probability that the weather will be  warm and not snowy on a random day in England?, warm and not snowy,AandnotB,30,2509687.323126,2509693.002538,5.679412
+510,3,11,If the weather in England is not cold on a random daywhat is the probability that the weather will also be rainy on the same day?, rainy given not cold,BgnotA,30,2509693.123137,2509703.730330,10.607193
+510,3,12,What is the probability that the weather will be  snowy on a random day in England?, snowy,B,5,2509703.856479,2509710.626320,6.769841
+510,3,13,What is the probability that the weather will be  snowy or not warm on a random day in England?, snowy or not warm,notAorB,20,2509710.756474,2509717.922080,7.165606
+510,3,14,If the weather in England is not cloudy on a random daywhat is the probability that the weather will also be windy on the same day?, windy given not cloudy,AgnotB,20,2509718.039820,2509729.057880,11.018060
+510,3,15,What is the probability that the weather will be  rainy or not cold on a random day in England?, rainy or not cold,notAorB,40,2509729.189866,2509747.673513,18.483647
+510,3,16,What is the probability that the weather will be  cloudy or not windy on a random day in England?, cloudy or not windy,notAorB,40,2509747.806562,2509757.137328,9.330766
+510,3,17,If the weather in England is not warm on a random daywhat is the probability that the weather will also be snowy on the same day?, snowy given not warm,BgnotA,10,2509757.273249,2509763.457241,6.183992
+510,3,18,What is the probability that the weather will be  not warm and not snowy on a random day in England?, not warm and not snowy,notAandnotB,90,2509763.573262,2509767.545152,3.971890
+510,3,19,If the weather in England is cold on a random daywhat is the probability that the weather will also be not rainy on the same day?, not rainy given cold,notBgA,70,2509767.673268,2509775.433007,7.759739
+510,3,20,What is the probability that the weather will be  cloudy and not windy on a random day in England?, cloudy and not windy,notAandB,40,2509775.556606,2509784.896822,9.340216
+510,3,21,What is the probability that the weather will be  windy or cloudy on a random day in England?, windy or cloudy,AorB,90,2509785.039933,2509789.736796,4.696863
+510,3,22,What is the probability that the weather will be  cloudy on a random day in England?, cloudy,B,90,2509789.873308,2509793.096888,3.223580
+510,3,23,What is the probability that the weather will be  not windy or not cloudy on a random day in England?, not windy or not cloudy,notAornotB,40,2509793.289981,2509797.128596,3.838616
+510,3,24,What is the probability that the weather will be  not windy and not cloudy on a random day in England?, not windy and not cloudy,notAandnotB,30,2509797.273292,2509801.120518,3.847226
+510,3,25,If the weather in England is rainy on a random daywhat is the probability that the weather will also be cold on the same day?, cold given rainy,AgB,80,2509801.323300,2509811.312338,9.989037
+510,3,26,If the weather in England is warm on a random daywhat is the probability that the weather will also be not snowy on the same day?, not snowy given warm,notBgA,100,2509811.456659,2509825.376120,13.919461
+510,3,27,If the weather in England is snowy on a random daywhat is the probability that the weather will also be not warm on the same day?, not warm given snowy,notAgB,100,2509825.523373,2509833.431942,7.908568
+510,3,28,If the weather in England is warm on a random daywhat is the probability that the weather will also be snowy on the same day?, snowy given warm,BgA,0,2509833.573351,2509843.039969,9.466618
+510,3,29,What is the probability that the weather will be  cold and not rainy on a random day in England?, cold and not rainy,AandnotB,80,2509843.156738,2509853.535548,10.378810
+510,3,30,What is the probability that the weather will be  warm and snowy on a random day in England?, warm and snowy,AandB,0,2509853.656690,2509861.095772,7.439083
+510,3,31,What is the probability that the weather will be  cold and rainy on a random day in England?, cold and rainy,AandB,90,2509861.206764,2509865.287355,4.080591
+510,3,32,If the weather in England is windy on a random daywhat is the probability that the weather will also be cloudy on the same day?, cloudy given windy,BgA,90,2509865.406762,2509871.551244,6.144482
+510,3,33,What is the probability that the weather will be  windy on a random day in England?, windy,A,90,2509871.723446,2509874.863669,3.140223
+510,3,34,If the weather in England is not windy on a random daywhat is the probability that the weather will also be cloudy on the same day?, cloudy given not windy,BgnotA,30,2509875.090130,2509881.159071,6.068940
+510,3,35,What is the probability that the weather will be  windy and not cloudy on a random day in England?, windy and not cloudy,AandnotB,10,2509881.290110,2509887.326967,6.036857
+510,3,36,What is the probability that the weather will be  not warm on a random day in England?, not warm,notA,80,2509887.440124,2509892.262900,4.822776
+510,3,37,What is the probability that the weather will be  snowy and not warm on a random day in England?, snowy and not warm,notAandB,5,2509892.373485,2509897.230964,4.857479
+510,3,38,What is the probability that the weather will be  not cloudy on a random day in England?, not cloudy,notB,30,2509897.340147,2509901.566708,4.226561
+510,3,39,If the weather in England is not snowy on a random daywhat is the probability that the weather will also be not warm on the same day?, not warm given not snowy,notAgnotB,100,2509901.690148,2509916.222438,14.532289
+510,3,40,If the weather in England is not cloudy on a random daywhat is the probability that the weather will also be not windy on the same day?, not windy given not cloudy,notAgnotB,100,2509916.356871,2509930.974169,14.617298
+510,3,41,What is the probability that the weather will be  cold or not rainy on a random day in England?, cold or not rainy,AornotB,70,2509931.123528,2509938.437995,7.314467
+510,3,42,If the weather in England is snowy on a random daywhat is the probability that the weather will also be warm on the same day?, warm given snowy,AgB,0,2509938.556894,2509945.422057,6.865163
+510,3,43,If the weather in England is not warm on a random daywhat is the probability that the weather will also be not snowy on the same day?, not snowy given not warm,notBgnotA,70,2509945.590248,2509960.213638,14.623391
+510,3,44,What is the probability that the weather will be  rainy on a random day in England?, rainy,B,90,2509960.323605,2509963.677817,3.354212
+510,3,45,What is the probability that the weather will be  not cold and not rainy on a random day in England?, not cold and not rainy,notAandnotB,40,2509963.806936,2509967.525487,3.718551
+510,3,46,What is the probability that the weather will be  not warm or not snowy on a random day in England?, not warm or not snowy,notAornotB,80,2509967.656959,2509973.837353,6.180394
+510,3,47,What is the probability that the weather will be  warm or snowy on a random day in England?, warm or snowy,AorB,5,2509973.956969,2509984.725366,10.768397
+510,3,48,What is the probability that the weather will be  windy and cloudy on a random day in England?, windy and cloudy,AandB,90,2509984.840302,2509999.852903,15.012601
+510,3,49,If the weather in England is not cold on a random daywhat is the probability that the weather will also be not rainy on the same day?, not rainy given not cold,notBgnotA,70,2509999.957001,2510008.284735,8.327734
+510,3,50,If the weather in England is cloudy on a random daywhat is the probability that the weather will also be windy on the same day?, windy given cloudy,AgB,90,2510008.423676,2510018.836207,10.412531
+510,3,51,What is the probability that the weather will be  windy or not cloudy on a random day in England?, windy or not cloudy,AornotB,70,2510018.973708,2510025.492420,6.518711
+510,3,52,What is the probability that the weather will be  cold or rainy on a random day in England?, cold or rainy,AorB,90,2510025.640379,2510028.860372,3.219992
+510,3,53,What is the probability that the weather will be  rainy and not cold on a random day in England?, rainy and not cold,notAandB,4,2510028.990369,2510040.295451,11.305082
+510,3,54,If the weather in England is not rainy on a random daywhat is the probability that the weather will also be not cold on the same day?, not cold given not rainy,notAgnotB,60,2510040.457080,2510049.491994,9.034914
+510,3,55,What is the probability that the weather will be  not snowy on a random day in England?, not snowy,notB,95,2510049.640424,2510055.339869,5.699445
+510,3,56,What is the probability that the weather will be  not windy on a random day in England?, not windy,notA,20,2510055.457077,2510061.123779,5.666702
+510,3,57,If the weather in England is cold on a random daywhat is the probability that the weather will also be rainy on the same day?, rainy given cold,BgA,90,2510061.240446,2510065.539686,4.299240
+510,3,58,If the weather in England is not rainy on a random daywhat is the probability that the weather will also be cold on the same day?, cold given not rainy,AgnotB,80,2510065.640423,2510071.827570,6.187147
+510,3,59,If the weather in England is cloudy on a random daywhat is the probability that the weather will also be not windy on the same day?, not windy given cloudy,notAgB,30,2510071.940468,2510080.803407,8.862940
+510,3,60,What is the probability that the weather will be  warm or not snowy on a random day in England?, warm or not snowy,AornotB,10,2510080.940487,2510100.603060,19.662573
