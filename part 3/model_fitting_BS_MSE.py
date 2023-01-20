@@ -14,8 +14,6 @@ We are grateful for Zhu et al for openly sharing their work.
 """
 
 
-
-
 import numpy as np
 import scipy.stats as st
 from scipy.optimize import fmin, differential_evolution
